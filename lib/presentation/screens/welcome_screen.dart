@@ -1,17 +1,17 @@
+import 'package:changma_bhach/presentation/styles/app_colors.dart';
+import 'package:changma_bhach/presentation/styles/app_images.dart';
 import 'package:changma_bhach/presentation/styles/text_styles.dart';
-import 'package:changma_bhach/utils/all_colors.dart';
-import 'package:changma_bhach/utils/all_images.dart';
+import 'package:changma_bhach/routes/app_routes.dart';
 import 'package:changma_bhach/utils/all_text.dart';
 import 'package:flutter/material.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
-  void onPressed() {}
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: darkBlue,
+        backgroundColor: AppColors.darkBlue,
         body: Container(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           margin: const EdgeInsets.only(top: 100),
@@ -51,21 +51,25 @@ class WelcomeScreen extends StatelessWidget {
                   SizedBox(
                     width: 190,
                     child: ElevatedButton(
-                      onPressed: onPressed,
+                      onPressed: () {
+                        Navigator.pushNamed(context, AppRoutes.bottomNav);
+                      },
                       style: const ButtonStyle(
-                          backgroundColor: WidgetStatePropertyAll(apricot)),
+                          backgroundColor:
+                              WidgetStatePropertyAll(AppColors.apricot)),
                       child: const Row(
                         children: [
                           Text(
                             welcomeButtonText,
-                            style: TextStyle(color: darkBlue, fontSize: 20),
+                            style: TextStyle(
+                                color: AppColors.darkBlue, fontSize: 20),
                           ),
                           SizedBox(
                             width: 10,
                           ),
                           Icon(
                             Icons.arrow_right_alt_outlined,
-                            color: darkBlue,
+                            color: AppColors.darkBlue,
                           )
                         ],
                       ),
@@ -76,7 +80,7 @@ class WelcomeScreen extends StatelessWidget {
               const Stack(
                 children: [
                   Image(
-                    image: AssetImage(welcomeImage),
+                    image: AssetImage(AppImages.welcomeImage),
                     width: 300,
                   ),
                 ],
