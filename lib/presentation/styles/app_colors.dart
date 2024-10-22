@@ -7,4 +7,11 @@ class AppColors {
   static const Color offWhite = Color(0XFFfbf5f2);
   static const Color bgWhite2 = Color(0xFFfefefd);
   static const Color lightBlue = Color(0xFF8093B5);
+
+  // LessonButtons
+  static const Color lightPeriwinkle = Color(0xFFBFCBDE);
+  static const Color paleRobinEggBlue = Color(0xFF95D6CE);
+  static const Color yellowCrayola = Color(0xFFFFEB80);
+  static const Color skyBlueCrayola = Color(0xFF73DCFF);
+  static const Color mistyRose = Color(0xFFF8E7E2);
 }

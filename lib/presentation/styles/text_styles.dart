@@ -16,4 +16,21 @@ class TextStyles {
     fontSize: 40,
     color: Colors.black,
   );
+
+  static const TextStyle categoryHeading = TextStyle(
+    fontSize: 22,
+    fontWeight: FontWeight.bold,
+    color: Colors.black,
+  );
+
+  static const TextStyle headingText = TextStyle(
+    fontSize: 22,
+    fontWeight: FontWeight.bold,
+    color: Colors.black,
+  );
+  static const TextStyle subHeadingText = TextStyle(
+    fontSize: 18,
+    fontWeight: FontWeight.normal,
+    color: Colors.black,
+  );
 }
