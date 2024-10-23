@@ -2,9 +2,9 @@ import 'package:changma_bhach/presentation/styles/app_colors.dart';
 import 'package:changma_bhach/presentation/styles/app_images.dart';
 import 'package:changma_bhach/presentation/styles/text_styles.dart';
 import 'package:changma_bhach/presentation/widgets/lesson_button.dart';
+import 'package:changma_bhach/presentation/widgets/proverb_carousal.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -48,44 +48,17 @@ class HomeScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // Top App Bar
-
               const SizedBox(
                 height: 20,
               ),
 
-// Proverb Section
+              // Proverb Section
               Text(
                 AppLocalizations.of(context)!.proverbTitle,
                 style: TextStyles.categoryHeading,
               ),
 
-              CarouselSlider(
-                options: CarouselOptions(height: 80.0),
-                items: [1, 2, 3, 4, 5].map((i) {
-                  return Builder(
-                    builder: (BuildContext context) {
-                      String proverbKey = "proverb$i";
-                      String proverb =
-                          AppLocalizations.of(context)!.getString(proverbKey);
-
-                      return Container(
-                        width: MediaQuery.of(context).size.width,
-                        child: Text(
-                          AppLocalizations.of(context)!
-                                  .proverb2[0]
-                                  .toUpperCase() +
-                              AppLocalizations.of(context)!
-                                  .proverb1
-                                  .substring(1),
-                          style: TextStyles.headingText
-                              .copyWith(fontWeight: FontWeight.normal),
-                        ),
-                      );
-                    },
-                  );
-                }).toList(),
-              ),
-
+              const ProverbCarousal(),
               const SizedBox(
                 height: 40,
               ),
