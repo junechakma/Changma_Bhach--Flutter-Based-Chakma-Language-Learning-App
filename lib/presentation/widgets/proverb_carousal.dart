@@ -29,6 +29,20 @@ class ProverbCarousal extends StatelessWidget {
       AppLocalizations.of(context)!.proverb18,
       AppLocalizations.of(context)!.proverb19,
       AppLocalizations.of(context)!.proverb20,
+      AppLocalizations.of(context)!.proverb21,
+      AppLocalizations.of(context)!.proverb22,
+      AppLocalizations.of(context)!.proverb23,
+      AppLocalizations.of(context)!.proverb24,
+      AppLocalizations.of(context)!.proverb25,
+      AppLocalizations.of(context)!.proverb26,
+      AppLocalizations.of(context)!.proverb27,
+      AppLocalizations.of(context)!.proverb28,
+      AppLocalizations.of(context)!.proverb29,
+      AppLocalizations.of(context)!.proverb30,
+      AppLocalizations.of(context)!.proverb31,
+      AppLocalizations.of(context)!.proverb32,
+      AppLocalizations.of(context)!.proverb33,
+      AppLocalizations.of(context)!.proverb34,
     ];
 
     return CarouselSlider(

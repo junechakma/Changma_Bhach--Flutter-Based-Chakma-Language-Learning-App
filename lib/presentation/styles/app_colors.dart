@@ -6,6 +6,8 @@ class AppColors {
   static const Color bgWhite = Color(0XFFF2F2F2);
   static const Color offWhite = Color(0XFFfbf5f2);
   static const Color bgWhite2 = Color(0xFFfefefd);
+  static const Color lessonBg = Color(0xFFF9F9F9);
+
   static const Color lightBlue = Color(0xFF8093B5);
 
   // LessonButtons

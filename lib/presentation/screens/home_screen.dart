@@ -3,6 +3,7 @@ import 'package:changma_bhach/presentation/styles/app_images.dart';
 import 'package:changma_bhach/presentation/styles/text_styles.dart';
 import 'package:changma_bhach/presentation/widgets/lesson_button.dart';
 import 'package:changma_bhach/presentation/widgets/proverb_carousal.dart';
+import 'package:changma_bhach/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -80,30 +81,42 @@ class HomeScreen extends StatelessWidget {
                   crossAxisCount: 2,
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
-                  children: const [
+                  children: [
                     LessonButton(
                       bgColor: AppColors.lightPeriwinkle,
                       image: AppImages.vowelImage,
                       headingText: "Vowel",
                       subHeadingText: "Gaimattyapath",
+                      onTap: () {
+                        Navigator.pushNamed(context, AppRoutes.lessonScreen);
+                      },
                     ),
                     LessonButton(
                       bgColor: AppColors.paleRobinEggBlue,
                       image: AppImages.vowelImage,
                       headingText: "Vowel",
                       subHeadingText: "Gaimattyapath",
+                      onTap: () {
+                        Navigator.pushNamed(context, AppRoutes.lessonScreen);
+                      },
                     ),
                     LessonButton(
                       bgColor: AppColors.yellowCrayola,
                       image: AppImages.diacriticsImage,
                       headingText: "Vowel",
                       subHeadingText: "Gaimattyapath",
+                      onTap: () {
+                        Navigator.pushNamed(context, AppRoutes.lessonScreen);
+                      },
                     ),
                     LessonButton(
                       bgColor: AppColors.skyBlueCrayola,
                       image: AppImages.conjunctImage,
                       headingText: "Vowel",
                       subHeadingText: "Gaimattyapath",
+                      onTap: () {
+                        Navigator.pushNamed(context, AppRoutes.lessonScreen);
+                      },
                     ),
                   ],
                 ),
@@ -121,12 +134,16 @@ class HomeScreen extends StatelessWidget {
                 height: 20,
               ),
 
-              const LessonButton(
+              LessonButton(
                 bgColor: AppColors.mistyRose,
                 image: AppImages.conjunctImage,
                 headingText: "Vowel",
                 subHeadingText: "Gaimattyapath",
+                onTap: () {
+                  Navigator.pushNamed(context, AppRoutes.lessonScreen);
+                },
               ),
+
               const SizedBox(
                 height: 20,
               ),

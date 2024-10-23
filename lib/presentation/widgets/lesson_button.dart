@@ -6,17 +6,20 @@ class LessonButton extends StatelessWidget {
   final String image;
   final String headingText;
   final String subHeadingText;
+  final VoidCallback onTap;
 
   const LessonButton(
       {super.key,
       required this.bgColor,
       required this.image,
       required this.headingText,
-      required this.subHeadingText});
+      required this.subHeadingText,
+      required this.onTap});
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
+      onTap: onTap,
       splashColor: Colors.blue.withOpacity(0.2),
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 20),
