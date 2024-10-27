@@ -3,6 +3,7 @@ import 'package:changma_bhach/presentation/styles/app_images.dart';
 import 'package:changma_bhach/presentation/styles/text_styles.dart';
 import 'package:changma_bhach/presentation/widgets/lesson_button.dart';
 import 'package:changma_bhach/presentation/widgets/proverb_carousal.dart';
+import 'package:changma_bhach/presentation/widgets/score_counter.dart';
 import 'package:changma_bhach/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -15,31 +16,14 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.bgWhite2,
       appBar: AppBar(
-        automaticallyImplyLeading: false,
-        backgroundColor: AppColors.bgWhite2,
-        actions: const [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(""),
-              SizedBox(
-                child: Row(
-                  children: [
-                    Text(
-                      "২",
-                      style: TextStyles.scoreCounter,
-                    ),
-                    Image(
-                      image: AssetImage(AppImages.scoreImage),
-                      width: 40,
-                    ),
-                  ],
-                ),
-              )
-            ],
-          ),
-        ],
-      ),
+          automaticallyImplyLeading: false,
+          backgroundColor: AppColors.bgWhite2,
+          actions: const [
+            ScoreCounter(),
+            SizedBox(
+              width: 20,
+            )
+          ]),
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Container(
@@ -64,8 +48,8 @@ class HomeScreen extends StatelessWidget {
                 height: 40,
               ),
 
-              const Text(
-                "Lessons",
+              Text(
+                AppLocalizations.of(context)!.lesson,
                 style: TextStyles.categoryHeading,
               ),
 
@@ -85,17 +69,18 @@ class HomeScreen extends StatelessWidget {
                     LessonButton(
                       bgColor: AppColors.lightPeriwinkle,
                       image: AppImages.vowelImage,
-                      headingText: "Vowel",
-                      subHeadingText: "Gaimattyapath",
+                      headingText: AppLocalizations.of(context)!.vowel,
+                      subHeadingText: AppLocalizations.of(context)!.vowelChakma,
                       onTap: () {
                         Navigator.pushNamed(context, AppRoutes.lessonScreen);
                       },
                     ),
                     LessonButton(
                       bgColor: AppColors.paleRobinEggBlue,
-                      image: AppImages.vowelImage,
-                      headingText: "Vowel",
-                      subHeadingText: "Gaimattyapath",
+                      image: AppImages.consonantImage,
+                      headingText: AppLocalizations.of(context)!.consonant,
+                      subHeadingText:
+                          AppLocalizations.of(context)!.consonantChakma,
                       onTap: () {
                         Navigator.pushNamed(context, AppRoutes.lessonScreen);
                       },
@@ -103,8 +88,9 @@ class HomeScreen extends StatelessWidget {
                     LessonButton(
                       bgColor: AppColors.yellowCrayola,
                       image: AppImages.diacriticsImage,
-                      headingText: "Vowel",
-                      subHeadingText: "Gaimattyapath",
+                      headingText: AppLocalizations.of(context)!.diacritics,
+                      subHeadingText:
+                          AppLocalizations.of(context)!.diacriticsChakma,
                       onTap: () {
                         Navigator.pushNamed(context, AppRoutes.lessonScreen);
                       },
@@ -112,8 +98,9 @@ class HomeScreen extends StatelessWidget {
                     LessonButton(
                       bgColor: AppColors.skyBlueCrayola,
                       image: AppImages.conjunctImage,
-                      headingText: "Vowel",
-                      subHeadingText: "Gaimattyapath",
+                      headingText: AppLocalizations.of(context)!.numerals,
+                      subHeadingText:
+                          AppLocalizations.of(context)!.numeralsChakma,
                       onTap: () {
                         Navigator.pushNamed(context, AppRoutes.lessonScreen);
                       },

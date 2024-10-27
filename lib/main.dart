@@ -1,5 +1,7 @@
 import 'package:changma_bhach/presentation/screens/welcome_screen.dart';
+import 'package:changma_bhach/providers/lesson_provider.dart';
 import 'package:changma_bhach/providers/locale_provider.dart';
+import 'package:changma_bhach/providers/score_provider.dart';
 import 'package:changma_bhach/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -7,12 +9,14 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 
 void main() {
-  runApp(
-    ChangeNotifierProvider(
-      create: (_) => LocaleProvider(),
-      child: const MyApp(),
-    ),
-  );
+  runApp(MultiProvider(
+    providers: [
+      ChangeNotifierProvider(create: (_) => LocaleProvider()),
+      ChangeNotifierProvider(create: (_) => ScoreProvider()),
+      ChangeNotifierProvider(create: (_) => LessonProvider()),
+    ],
+    child: const MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {

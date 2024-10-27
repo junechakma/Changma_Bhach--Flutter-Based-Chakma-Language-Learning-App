@@ -36,7 +36,7 @@ class LessonButton extends StatelessWidget {
               children: [
                 Image(
                   image: AssetImage(image),
-                  width: 100,
+                  width: 90,
                 ),
               ],
             ),

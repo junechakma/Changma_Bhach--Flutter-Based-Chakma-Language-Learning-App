@@ -2,9 +2,6 @@
   "appName": "Changma Bhach",
   "welcomeMessage": "Welcome to the app for learning Chakma language and letters!",
   "enter": "Get Inside",
-
-  
-  
   "proverbTitle": "Proverb",
   "proverb1": "Agha ele baghore dor nei, pada ele rajar laj nei.",
   "proverb2": "Jade jad togay, hangara gad togay.",
@@ -39,6 +36,16 @@
   "proverb31": "Ebo madattun bijol n yeje gori bor bor hada.",
   "proverb32": "Chadore benge ghinei, benger chade ghinei.",
   "proverb33": "Por jagat sep phelanaw dhor.",
-  "proverb34": "Nuo nuo bangri nuo nuo rong, puron ale phele diong."
+  "proverb34": "Nuo nuo bangri nuo nuo rong, puron ale phele diong.",
 
+
+  "lesson": "Lesson",
+  "vowel": "Vowel",
+  "vowelChakma": "Gaimattyapath",
+  "consonant": "Consonant",
+  "consonantChakma": "Balemattyapath",
+  "diacritics": "Diacritics",
+  "diacriticsChakma": "Majarapath",
+  "numerals": "Numerals",
+  "numeralsChakma": "Nadapath"
 }
