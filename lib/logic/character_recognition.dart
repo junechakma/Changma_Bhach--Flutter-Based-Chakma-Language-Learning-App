@@ -46,7 +46,7 @@ class CharacterRecognition {
       img.Image? image = img.decodeImage(imageBytes);
 
       if (image == null) {
-        print("Error decoding image");
+        // print("Error decoding image");
         return;
       }
 
@@ -55,10 +55,6 @@ class CharacterRecognition {
 
       // Convert to grayscale
       img.Image grayscaleImage = img.grayscale(resizedImage);
-
-      // Convert grayscale image to Uint8List for display
-      List<int> grayscaleBytes = img.encodePng(grayscaleImage);
-      Uint8List displayableImage = Uint8List.fromList(grayscaleBytes);
 
       // Convert to 2D array and normalize
       List<List<double>> pixelsArray = List.generate(
@@ -76,7 +72,7 @@ class CharacterRecognition {
 
       await _runTFLiteModel(inputArray);
     } catch (e) {
-      print("Error preparing image for model: $e");
+      // print("Error preparing image for model: $e");
     }
   }
 
@@ -85,30 +81,30 @@ class CharacterRecognition {
     try {
       // Load the TFLite model
       final interpreter = await Interpreter.fromAsset(
-          'assets/models/character_recognition_model.tflite');
+          'assets/models/chakma_character_recognition_model.tflite');
 
-      print("Model Loaded");
+      // print("Model Loaded");
 
       // Prepare the input and output tensors
       var output = List.filled(1 * classNames.length, 0.0)
           .reshape([1, classNames.length]); // Output shape for classification
 
       // Print input array dimensions for debugging
-      print(
-          'Input Array Dimensions: ${inputArray.length}x${inputArray[0].length}x${inputArray[0][0].length}');
+      // print(
+      //     'Input Array Dimensions: ${inputArray.length}x${inputArray[0].length}x${inputArray[0][0].length}');
 
       // Run the model
       interpreter.run(inputArray, output);
 
       // Print model output for debugging
-      print("Model Output: $output");
+      // print("Model Output: $output");
 
       // Get the index of the highest probability in the output
       int predictedClassIndex = output[0].indexWhere((element) =>
           element ==
           (output[0] as List<double>).reduce((a, b) => a > b ? a : b));
 
-      print("Predicted Class Index: $predictedClassIndex");
+      // print("Predicted Class Index: $predictedClassIndex");
 
       // Get the corresponding Chakma character
       String predictedChar = classNames[predictedClassIndex];
@@ -116,12 +112,12 @@ class CharacterRecognition {
 // Store the predicted character
       predictedCharacter = predictedChar;
 
-      print("Predicted Character: $predictedCharacter");
+      // print("Predicted Character: $predictedCharacter");
 
       // Close interpreter after use
       interpreter.close();
     } catch (e) {
-      print("Error running the model: $e");
+      // print("Error running the model: $e");
     }
   }
 }

@@ -1,6 +1,5 @@
 import 'package:changma_bhach/presentation/styles/app_colors.dart';
 import 'package:changma_bhach/presentation/styles/text_styles.dart';
-import 'package:changma_bhach/presentation/widgets/lessons/drawing_widget.dart';
 import 'package:changma_bhach/presentation/widgets/score_counter.dart';
 import 'package:changma_bhach/providers/lesson_provider.dart';
 import 'package:changma_bhach/routes/app_routes.dart';
@@ -15,8 +14,8 @@ class LessonScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final lessonProvider = Provider.of<LessonProvider>(context);
 
-    final GlobalKey<DrawingWidgetState> _drawingWidgetKey =
-        GlobalKey<DrawingWidgetState>();
+    // final GlobalKey<DrawingWidgetState> _drawingWidgetKey =
+    //     GlobalKey<DrawingWidgetState>();
 
     void onPressed() {}
     return Scaffold(
@@ -115,10 +114,11 @@ class LessonScreen extends StatelessWidget {
                   onPressed: () {
                     Navigator.pushNamed(context, AppRoutes.drawingScreen);
                   },
-                  child: const Flexible(
-                    child: Row(
-                      children: [Text("আকুন"), Icon(Icons.brush)],
-                    ),
+                  child: const Row(
+                    children: [
+                      Text("আকুন"),
+                      Icon(Icons.brush)
+                    ], // Removed `Flexible`
                   ),
                 ),
               ],

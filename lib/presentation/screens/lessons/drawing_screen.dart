@@ -12,11 +12,12 @@ import 'dart:ui' as ui;
 import 'package:provider/provider.dart';
 
 class DrawingScreen extends StatefulWidget {
+  const DrawingScreen({super.key});
   @override
-  _DrawingScreenState createState() => _DrawingScreenState();
+  DrawingScreenState createState() => DrawingScreenState();
 }
 
-class _DrawingScreenState extends State<DrawingScreen> {
+class DrawingScreenState extends State<DrawingScreen> {
   final GlobalKey<DrawingCanvasState> _canvasKey =
       GlobalKey<DrawingCanvasState>();
   final CharacterRecognition _characterRecognizer = CharacterRecognition();
@@ -57,10 +58,11 @@ class _DrawingScreenState extends State<DrawingScreen> {
     setState(() {
       _predictedCharacter = _characterRecognizer.predictedCharacter;
     });
+    if (!mounted) return;
 
     // Validate the predicted character with LessonProvider
     final lessonProvider = Provider.of<LessonProvider>(context, listen: false);
-    lessonProvider.drawingValidation(_predictedCharacter);
+    lessonProvider.drawingValidation(context, _predictedCharacter);
 
     // Check if the prediction is correct
     if (lessonProvider.isCorrectLetter) {
@@ -68,7 +70,7 @@ class _DrawingScreenState extends State<DrawingScreen> {
     } else {
       // Optionally show an error message
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Incorrect character, please try again!')),
+        const SnackBar(content: Text('Incorrect character, please try again!')),
       );
       _clearCanvas();
     }
@@ -79,24 +81,24 @@ class _DrawingScreenState extends State<DrawingScreen> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Congratulations!'),
+          title: const Text('Congratulations!'),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               AnimatedContainer(
-                duration: Duration(seconds: 1),
-                padding: EdgeInsets.all(20),
+                duration: const Duration(seconds: 1),
+                padding: const EdgeInsets.all(20),
                 decoration: BoxDecoration(
                   color: Colors.green,
                   borderRadius: BorderRadius.circular(10),
                 ),
-                child: Text(
+                child: const Text(
                   'You guessed the right character!',
                   style: TextStyle(color: Colors.white, fontSize: 18),
                 ),
               ),
-              SizedBox(height: 20),
-              Text('What would you like to do next?'),
+              const SizedBox(height: 20),
+              const Text('What would you like to do next?'),
             ],
           ),
           actions: [
@@ -105,7 +107,7 @@ class _DrawingScreenState extends State<DrawingScreen> {
                 Navigator.of(context).pop(); // Close the dialog
                 _clearCanvas(); // Optionally clear the canvas
               },
-              child: Text('Retry'),
+              child: const Text('Retry'),
             ),
             TextButton(
               onPressed: () {
@@ -115,7 +117,7 @@ class _DrawingScreenState extends State<DrawingScreen> {
                 Navigator.pushNamed(
                     context, AppRoutes.lessonScreen); // Navigate to next lesson
               },
-              child: Text('Next Lesson'),
+              child: const Text('Next Lesson'),
             ),
           ],
         );
@@ -177,18 +179,14 @@ class _DrawingScreenState extends State<DrawingScreen> {
               children: [
                 ElevatedButton(
                   onPressed: _clearCanvas,
-                  child: const Flexible(
-                    child: Row(
-                      children: [Text("মুছুন"), Icon(Icons.clear_rounded)],
-                    ),
+                  child: const Row(
+                    children: [Text("মুছুন"), Icon(Icons.clear_rounded)],
                   ),
                 ),
                 ElevatedButton(
                   onPressed: _handlePrediction,
-                  child: const Flexible(
-                    child: Row(
-                      children: [Text("যাচাই করুন"), Icon(Icons.auto_awesome)],
-                    ),
+                  child: const Row(
+                    children: [Text("যাচাই করুন"), Icon(Icons.auto_awesome)],
                   ),
                 ),
               ],
@@ -201,14 +199,14 @@ class _DrawingScreenState extends State<DrawingScreen> {
 }
 
 class DrawingCanvas extends StatefulWidget {
-  const DrawingCanvas({Key? key}) : super(key: key);
+  const DrawingCanvas({super.key});
 
   @override
   DrawingCanvasState createState() => DrawingCanvasState();
 }
 
 class DrawingCanvasState extends State<DrawingCanvas> {
-  List<Offset?> _points = [];
+  final List<Offset?> _points = [];
 
   // Clear the points on the canvas
   void clearCanvas() {

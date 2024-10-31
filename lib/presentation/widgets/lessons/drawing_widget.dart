@@ -8,7 +8,7 @@ class DrawingWidget extends StatefulWidget {
 }
 
 class DrawingWidgetState extends State<DrawingWidget> {
-  List<Offset?> _points = [];
+  final List<Offset?> _points = [];
 
   void clear() {
     setState(() {

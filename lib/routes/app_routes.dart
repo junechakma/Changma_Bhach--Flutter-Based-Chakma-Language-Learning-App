@@ -18,7 +18,7 @@ class AppRoutes {
       home: (context) => const HomeScreen(),
       bottomNav: (context) => const BottomNavBar(),
       lessonScreen: (context) => const LessonScreen(),
-      drawingScreen: (context) => DrawingScreen(),
+      drawingScreen: (context) => const DrawingScreen(),
     };
   }
 }
