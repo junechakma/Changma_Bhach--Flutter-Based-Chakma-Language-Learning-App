@@ -8,12 +8,13 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 
 class LessonScreen extends StatelessWidget {
-  const LessonScreen({super.key});
+  final LessonType selectedLessonType;
+  const LessonScreen({super.key, required this.selectedLessonType});
 
   @override
   Widget build(BuildContext context) {
     final lessonProvider = Provider.of<LessonProvider>(context);
-
+    lessonProvider.setlessonType(selectedLessonType);
     // final GlobalKey<DrawingWidgetState> _drawingWidgetKey =
     //     GlobalKey<DrawingWidgetState>();
 
@@ -125,6 +126,19 @@ class LessonScreen extends StatelessWidget {
             ),
             const SizedBox(
               height: 20,
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            LinearProgressIndicator(
+              value: lessonProvider.lessonProgress,
+              valueColor: const AlwaysStoppedAnimation(AppColors.yellowCrayola),
+              backgroundColor: AppColors.darkBlue,
+              borderRadius: BorderRadius.circular(8),
+              minHeight: 10,
+            ),
+            const SizedBox(
+              height: 10,
             ),
           ],
         ),

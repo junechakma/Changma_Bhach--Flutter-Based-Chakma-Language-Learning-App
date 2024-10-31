@@ -1,9 +1,11 @@
+import 'package:changma_bhach/presentation/screens/lessons/lesson_screen.dart';
 import 'package:changma_bhach/presentation/styles/app_colors.dart';
 import 'package:changma_bhach/presentation/styles/app_images.dart';
 import 'package:changma_bhach/presentation/styles/text_styles.dart';
 import 'package:changma_bhach/presentation/widgets/lesson_button.dart';
 import 'package:changma_bhach/presentation/widgets/proverb_carousal.dart';
 import 'package:changma_bhach/presentation/widgets/score_counter.dart';
+import 'package:changma_bhach/providers/lesson_provider.dart';
 import 'package:changma_bhach/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -72,7 +74,12 @@ class HomeScreen extends StatelessWidget {
                       headingText: AppLocalizations.of(context)!.vowel,
                       subHeadingText: AppLocalizations.of(context)!.vowelChakma,
                       onTap: () {
-                        Navigator.pushNamed(context, AppRoutes.lessonScreen);
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const LessonScreen(
+                                      selectedLessonType: LessonType.vowel,
+                                    )));
                       },
                     ),
                     LessonButton(
@@ -82,7 +89,12 @@ class HomeScreen extends StatelessWidget {
                       subHeadingText:
                           AppLocalizations.of(context)!.consonantChakma,
                       onTap: () {
-                        Navigator.pushNamed(context, AppRoutes.lessonScreen);
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const LessonScreen(
+                                      selectedLessonType: LessonType.consonant,
+                                    )));
                       },
                     ),
                     LessonButton(
@@ -92,7 +104,12 @@ class HomeScreen extends StatelessWidget {
                       subHeadingText:
                           AppLocalizations.of(context)!.diacriticsChakma,
                       onTap: () {
-                        Navigator.pushNamed(context, AppRoutes.lessonScreen);
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const LessonScreen(
+                                      selectedLessonType: LessonType.vowel,
+                                    )));
                       },
                     ),
                     LessonButton(
@@ -102,7 +119,12 @@ class HomeScreen extends StatelessWidget {
                       subHeadingText:
                           AppLocalizations.of(context)!.numeralsChakma,
                       onTap: () {
-                        Navigator.pushNamed(context, AppRoutes.lessonScreen);
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const LessonScreen(
+                                      selectedLessonType: LessonType.consonant,
+                                    )));
                       },
                     ),
                   ],

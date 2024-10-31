@@ -1,6 +1,7 @@
 import 'dart:typed_data';
 
 import 'package:changma_bhach/logic/character_recognition.dart';
+import 'package:changma_bhach/presentation/screens/lessons/lesson_screen.dart';
 import 'package:changma_bhach/presentation/styles/app_colors.dart';
 import 'package:changma_bhach/presentation/styles/text_styles.dart';
 import 'package:changma_bhach/presentation/widgets/score_counter.dart';
@@ -77,6 +78,7 @@ class DrawingScreenState extends State<DrawingScreen> {
   }
 
   void _showCongratulationsDialog() {
+    final lessonProvider = Provider.of<LessonProvider>(context, listen: false);
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -112,12 +114,22 @@ class DrawingScreenState extends State<DrawingScreen> {
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop(); // Close the dialog
-                Provider.of<LessonProvider>(context, listen: false)
-                    .nextLetter();
-                Navigator.pushNamed(
-                    context, AppRoutes.lessonScreen); // Navigate to next lesson
+
+                if (lessonProvider.lastLetter) {
+                  Navigator.pushNamed(context, AppRoutes.resultScreen);
+                } else {
+                  lessonProvider.nextLetter();
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => LessonScreen(
+                          selectedLessonType: lessonProvider.currentLessonType),
+                    ),
+                  );
+                }
+                // Navigate to next lesson
               },
-              child: const Text('Next Lesson'),
+              child: Text(lessonProvider.lastLetter ? "Result" : "Next Lesson"),
             ),
           ],
         );
