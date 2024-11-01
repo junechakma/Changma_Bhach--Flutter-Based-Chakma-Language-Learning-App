@@ -119,11 +119,12 @@ class DrawingScreenState extends State<DrawingScreen> {
                   Navigator.pushNamed(context, AppRoutes.resultScreen);
                 } else {
                   lessonProvider.nextLetter();
-                  Navigator.push(
+                  Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
                       builder: (context) => LessonScreen(
-                          selectedLessonType: lessonProvider.currentLessonType),
+                        selectedLessonType: lessonProvider.currentLessonType,
+                      ),
                     ),
                   );
                 }

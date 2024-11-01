@@ -1,63 +1,49 @@
+import 'package:changma_bhach/providers/lesson_provider.dart';
 import 'package:changma_bhach/routes/app_routes.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class ResultScreen extends StatelessWidget {
   const ResultScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return PopScope(
-      canPop: true,
-      onPopInvokedWithResult: (didPop, result) async {
-        if (didPop) {
-          return;
-        }
-        _showBackDialog(context);
+    final lessonProvider = Provider.of<LessonProvider>(context);
+    lessonProvider.resetLesson();
+    return WillPopScope(
+      onWillPop: () async {
+        // Show the confirmation dialog
+        final shouldPop = await showDialog<bool>(
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              title: const Text('Confirm Exit'),
+              content: const Text('Do you really want to go back to home?'),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.of(context).pop(false),
+                  child: const Text('Cancel'),
+                ),
+                TextButton(
+                  onPressed: () => Navigator.pushNamed(context, AppRoutes.home),
+                  child: const Text('Yes'),
+                ),
+              ],
+            );
+          },
+        );
+        // Return true if the user confirmed, otherwise false
+        return shouldPop ?? false;
       },
       child: Scaffold(
         appBar: AppBar(
-          title: const Text("ResultScreen"),
+          title: const Text('ResultScreen'),
+        ),
+        body: Center(
+          child: Text(
+              'This is the Result Screen ${lessonProvider.lessonWrongAnswer}'),
         ),
       ),
     );
   }
-}
-
-Future<bool?> _showBackDialog(BuildContext context) {
-  return showDialog<bool>(
-    context: context,
-    builder: (BuildContext context) {
-      return AlertDialog(
-        title: const Text('Are you sure?'),
-        content: const Text(
-          'Are you sure you want to leave this page?',
-        ),
-        actions: <Widget>[
-          TextButton(
-            style: TextButton.styleFrom(
-              textStyle: Theme.of(context).textTheme.labelLarge,
-            ),
-            child: const Text('Nevermind'),
-            onPressed: () {
-              Navigator.pop(context, false); // Close dialog without action
-            },
-          ),
-          TextButton(
-            style: TextButton.styleFrom(
-              textStyle: Theme.of(context).textTheme.labelLarge,
-            ),
-            child: const Text('Go to Home'),
-            onPressed: () {
-              Navigator.pop(context, true); // Close the dialog
-              Navigator.pushNamedAndRemoveUntil(
-                context,
-                AppRoutes.home,
-                (Route<dynamic> route) => false, // Clear all routes
-              );
-            },
-          ),
-        ],
-      );
-    },
-  );
 }
