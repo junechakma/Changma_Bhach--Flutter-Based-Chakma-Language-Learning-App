@@ -154,8 +154,7 @@ class _LessonScreenState extends State<LessonScreen> {
                   const Text(""),
                   ElevatedButton(
                     onPressed: () {
-                      Navigator.pushReplacementNamed(
-                          context, AppRoutes.drawingScreen);
+                      Navigator.pushNamed(context, AppRoutes.drawingScreen);
                     },
                     child: const Row(
                       children: [

@@ -77,13 +77,10 @@ class LessonProvider extends ChangeNotifier {
   }
 
   void nextLetter() {
-    if (_selectedLesson.isEmpty) return;
-
     if (_isCorrectLetter && _currentIndex < _selectedLesson.length - 1) {
       _currentIndex++;
       _isCorrectLetter = false;
 
-      // Reset last letter flag if not on the final letter
       if (_currentIndex < _selectedLesson.length - 1) {
         _lastLetter = false;
       }
