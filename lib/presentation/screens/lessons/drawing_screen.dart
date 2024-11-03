@@ -116,7 +116,8 @@ class DrawingScreenState extends State<DrawingScreen> {
                 Navigator.of(context).pop(); // Close the dialog
 
                 if (lessonProvider.lastLetter) {
-                  Navigator.pushNamed(context, AppRoutes.resultScreen);
+                  Navigator.pushReplacementNamed(
+                      context, AppRoutes.resultScreen);
                 } else {
                   lessonProvider.nextLetter();
                   Navigator.pushReplacement(

@@ -10,33 +10,15 @@ class ResultScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final lessonProvider = Provider.of<LessonProvider>(context);
-    final resetLesson = lessonProvider.resetLesson();
+    // final resetLesson = lessonProvider.resetLesson();
 
-    return WillPopScope(
-      onWillPop: () async {
-        final shouldPop = await showDialog<bool>(
-          context: context,
-          builder: (context) {
-            return AlertDialog(
-              title: const Text('Confirm Exit'),
-              content: const Text('Do you really want to go back to home?'),
-              actions: [
-                TextButton(
-                  onPressed: () => Navigator.of(context).pop(false),
-                  child: const Text('Cancel'),
-                ),
-                TextButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, AppRoutes.home);
-                    resetLesson;
-                  },
-                  child: const Text('Yes'),
-                ),
-              ],
-            );
-          },
-        );
-        return shouldPop ?? false;
+    return PopScope(
+      canPop: false,
+      onPopInvokedWithResult: (didPop, result) {
+        if (didPop) {
+          return;
+        }
+        showExitConfirmationDialog(context);
       },
       child: Scaffold(
         appBar: AppBar(
@@ -158,28 +140,28 @@ class ResultScreen extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         ElevatedButton(
-          child: Text('Home'),
           style: ElevatedButton.styleFrom(
             backgroundColor: AppColors.darkBlue,
             foregroundColor: AppColors.mistyRose,
           ),
           onPressed: () {
             // Navigate back to home
-            Navigator.pushNamed(context, AppRoutes.home);
+            Navigator.pushReplacementNamed(context, AppRoutes.bottomNav);
             Provider.of<LessonProvider>(context, listen: false).resetLesson();
           },
+          child: const Text('Home'),
         ),
-        ElevatedButton(
-          onPressed: () {
-            Navigator.pushReplacementNamed(context, AppRoutes.lessonScreen);
-            Provider.of<LessonProvider>(context, listen: false).resetLesson();
-          },
-          child: Text('Retry Lesson'),
-          style: ElevatedButton.styleFrom(
-            backgroundColor: AppColors.lightBlue,
-            foregroundColor: AppColors.bgWhite,
-          ),
-        ),
+        // ElevatedButton(
+        //   onPressed: () {
+        //     Navigator.pushReplacementNamed(context, AppRoutes.lessonScreen);
+        //     Provider.of<LessonProvider>(context, listen: false).resetLesson();
+        //   },
+        //   style: ElevatedButton.styleFrom(
+        //     backgroundColor: AppColors.lightBlue,
+        //     foregroundColor: AppColors.bgWhite,
+        //   ),
+        //   child: const Text('Retry Lesson'),
+        // ),
       ],
     );
   }
@@ -190,4 +172,35 @@ class ResultScreen extends StatelessWidget {
     if (percentage >= 50) return Colors.orange;
     return Colors.red;
   }
+}
+
+Future<bool> showExitConfirmationDialog(BuildContext context) {
+  return showDialog<bool>(
+    context: context,
+    builder: (context) {
+      return AlertDialog(
+        title: const Text('Confirm Exit'),
+        content:
+            const Text('Do you really want to go back to the home screen?'),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.of(context)
+                  .pop(false); // Dismisses dialog without exiting
+            },
+            child: const Text('Cancel'),
+          ),
+          TextButton(
+            onPressed: () {
+              Navigator.pushReplacementNamed(context, AppRoutes.bottomNav);
+              Provider.of<LessonProvider>(context, listen: false).resetLesson();
+            },
+            child: const Text('Yes'),
+          ),
+        ],
+      );
+    },
+  ).then((value) =>
+      value ??
+      false); // Returns false if the dialog is dismissed without a selection
 }

@@ -1,7 +1,9 @@
 import 'package:changma_bhach/presentation/screens/home_screen.dart';
 import 'package:changma_bhach/presentation/screens/report_screen.dart';
 import 'package:changma_bhach/presentation/screens/translation_screen.dart';
+import 'package:changma_bhach/routes/app_routes.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class BottomNavBar extends StatefulWidget {
   const BottomNavBar({super.key});
@@ -27,17 +29,30 @@ class _BottomNavBarState extends State<BottomNavBar> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: appScreens.elementAt(_selectedIndex),
-      bottomNavigationBar: BottomNavigationBar(
-        onTap: _onItemTapped,
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.translate), label: "Translations"),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.bar_chart_outlined), label: "Report"),
-        ],
+    return PopScope(
+      canPop: false,
+      onPopInvokedWithResult: (didPop, result) {
+        if (didPop) {
+          return;
+        }
+        Navigator.pushNamed(context, AppRoutes.welcome);
+      },
+      child: Scaffold(
+        body: appScreens.elementAt(_selectedIndex),
+        bottomNavigationBar: BottomNavigationBar(
+          onTap: _onItemTapped,
+          items: <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+                icon: const Icon(Icons.home),
+                label: AppLocalizations.of(context)!.bottomBarHome),
+            BottomNavigationBarItem(
+                icon: const Icon(Icons.translate),
+                label: AppLocalizations.of(context)!.bottomBarTranslations),
+            BottomNavigationBarItem(
+                icon: const Icon(Icons.bar_chart_outlined),
+                label: AppLocalizations.of(context)!.bottomBarReport),
+          ],
+        ),
       ),
     );
   }

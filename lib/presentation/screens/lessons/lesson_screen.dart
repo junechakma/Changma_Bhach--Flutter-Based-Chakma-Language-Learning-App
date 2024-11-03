@@ -29,42 +29,26 @@ class _LessonScreenState extends State<LessonScreen> {
   Widget build(BuildContext context) {
     final lessonProvider = Provider.of<LessonProvider>(context);
 
+    final String appBarTitle = lessonProvider.lessonHeading;
     // final GlobalKey<DrawingWidgetState> _drawingWidgetKey =
     //     GlobalKey<DrawingWidgetState>();
 
-    return WillPopScope(
-      onWillPop: () async {
-        final shouldPop = await showDialog<bool>(
-          context: context,
-          builder: (context) {
-            return AlertDialog(
-              title: const Text('Confirm Exit'),
-              content: const Text('Do you really want to go to home?'),
-              actions: [
-                TextButton(
-                  onPressed: () => Navigator.of(context).pop(false),
-                  child: const Text('Cancel'),
-                ),
-                TextButton(
-                  onPressed: () {
-                    Navigator.pushReplacementNamed(context, AppRoutes.home);
-                    Provider.of<LessonProvider>(context, listen: false)
-                        .resetLesson();
-                  },
-                  child: const Text('Yes'),
-                ),
-              ],
-            );
-          },
-        );
-        return shouldPop ?? false;
+    return PopScope(
+      canPop: false,
+      onPopInvokedWithResult: (didPop, result) {
+        if (didPop) {
+          return;
+        }
+        showExitAlert(context);
       },
       child: Scaffold(
         backgroundColor: AppColors.bgWhite,
         appBar: AppBar(
           backgroundColor: AppColors.bgWhite,
           title: Text(
-            AppLocalizations.of(context)!.vowel,
+            appBarTitle == "vowel"
+                ? AppLocalizations.of(context)!.vowel
+                : AppLocalizations.of(context)!.consonant,
             style: TextStyles.lessonText.copyWith(fontSize: 26),
           ),
           centerTitle: true,
@@ -108,7 +92,7 @@ class _LessonScreenState extends State<LessonScreen> {
                       ),
                       Text(
                         lessonProvider.content["pronunciation"],
-                        style: TextStyles.subHeadingText.copyWith(fontSize: 28),
+                        style: TextStyles.subHeadingText.copyWith(fontSize: 26),
                       ),
                       const SizedBox(
                         height: 50,
@@ -116,21 +100,25 @@ class _LessonScreenState extends State<LessonScreen> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          const Text(
+                          Text(
                             "শব্দঃ",
-                            style: TextStyles.subHeadingText,
+                            style: TextStyles.subHeadingText
+                                .copyWith(fontSize: 18),
                           ),
                           Text(
                             lessonProvider.content["word"],
-                            style: TextStyles.subHeadingText,
+                            style: TextStyles.subHeadingText
+                                .copyWith(fontSize: 18),
                           ),
-                          const Text(
+                          Text(
                             "-",
-                            style: TextStyles.subHeadingText,
+                            style: TextStyles.subHeadingText
+                                .copyWith(fontSize: 18),
                           ),
                           Text(
                             lessonProvider.content["chakmaWord"],
-                            style: TextStyles.subHeadingText,
+                            style: TextStyles.subHeadingText
+                                .copyWith(fontSize: 18),
                           ),
                         ],
                       )
@@ -188,4 +176,28 @@ class _LessonScreenState extends State<LessonScreen> {
       ),
     );
   }
+}
+
+Future showExitAlert(BuildContext context) {
+  return showDialog<bool>(
+    context: context,
+    builder: (context) {
+      return AlertDialog(
+        title: const Text('Confirm Exit'),
+        content: const Text('Do you really want to go to home?'),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(false),
+            child: const Text('Cancel'),
+          ),
+          TextButton(
+            onPressed: () {
+              Navigator.pushReplacementNamed(context, AppRoutes.bottomNav);
+            },
+            child: const Text('Yes'),
+          ),
+        ],
+      );
+    },
+  );
 }

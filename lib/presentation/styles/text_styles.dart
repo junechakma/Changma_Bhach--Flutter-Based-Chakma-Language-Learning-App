@@ -13,7 +13,7 @@ class TextStyles {
 
   static const TextStyle scoreCounter = TextStyle(
     fontWeight: FontWeight.w500,
-    fontSize: 40,
+    fontSize: 30,
     color: Colors.black,
   );
 
@@ -24,18 +24,18 @@ class TextStyles {
   );
 
   static const TextStyle headingText = TextStyle(
-    fontSize: 22,
+    fontSize: 18,
     fontWeight: FontWeight.bold,
     color: Colors.black,
   );
   static const TextStyle subHeadingText = TextStyle(
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: FontWeight.normal,
     color: Colors.black,
   );
 
   static const TextStyle lessonText = TextStyle(
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: FontWeight.normal,
     color: Colors.black,
   );

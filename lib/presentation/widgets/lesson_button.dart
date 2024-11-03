@@ -3,26 +3,28 @@ import 'package:flutter/material.dart';
 
 class LessonButton extends StatelessWidget {
   final Color bgColor;
-  final String image;
   final String headingText;
   final String subHeadingText;
   final VoidCallback onTap;
+  final String lessonIconText;
 
   const LessonButton(
       {super.key,
       required this.bgColor,
-      required this.image,
       required this.headingText,
       required this.subHeadingText,
-      required this.onTap});
+      required this.onTap,
+      required this.lessonIconText});
 
   @override
   Widget build(BuildContext context) {
+    final cardWidth = MediaQuery.of(context).size;
     return InkWell(
       onTap: onTap,
-      splashColor: Colors.blue.withOpacity(0.2),
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
+        width: cardWidth.width * .48,
+        padding: const EdgeInsets.all(20),
+        margin: const EdgeInsets.only(right: 10),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
           color: bgColor,
@@ -34,14 +36,20 @@ class LessonButton extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Image(
-                  image: AssetImage(image),
-                  width: 90,
-                ),
+                Text(lessonIconText,
+                    style: const TextStyle(
+                        fontSize: 40,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white)),
               ],
             ),
-            const SizedBox(height: 10),
-            Text(headingText, style: TextStyles.headingText),
+            const SizedBox(height: 20),
+            Row(
+              children: [
+                Text(headingText, style: TextStyles.headingText),
+                Text("($lessonIconText) ", style: TextStyles.headingText),
+              ],
+            ),
             Text(subHeadingText, style: TextStyles.subHeadingText),
           ],
         ),

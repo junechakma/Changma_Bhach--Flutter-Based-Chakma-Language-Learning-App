@@ -1,51 +1,259 @@
 {
+  "@@locale": "en",
   "appName": "Changma Bhach",
+  "@appName": {
+    "description": "The name of the application"
+  },
+  
   "welcomeMessage": "Welcome to the app for learning Chakma language and letters!",
+  "@welcomeMessage": {
+    "description": "A welcome message displayed to the user"
+  },
+  
   "enter": "Get Inside",
-  "proverbTitle": "Proverb",
-  "proverb1": "Agha ele baghore dor nei, pada ele rajar laj nei.",
-  "proverb2": "Jade jad togay, hangara gad togay.",
-  "proverb3": "Tagol dadottun samei dangor.",
-  "proverb4": "Dugottun ogoman dangor.",
-  "proverb5": "Dhorimme jeda, erimme mora.",
-  "proverb6": "Duj hele ujh bare.",
-  "proverb7": "Nijo alu nije hure.",
-  "proverb8": "Nijo bhat hei por goru sorana.",
-  "proverb9": "Nei mogottun han mok bhala, shobai no padhe rajar jhi bhala.",
-  "proverb10": "Panit dhubi agana.",
-  "proverb11": "Bandorror hi al chora.",
-  "proverb12": "Bala dharele bala pai, dharayee bala hudu jay.",
-  "proverb13": "Boidyottun pothyo bej.",
-  "proverb14": "Maje na chhene jal, bondhay na chhene hal.",
-  "proverb15": "Jar hame jare saje, ar hame ladi mare.",
-  "proverb16": "Je madit ajar hay, se madit bhor di udona.",
-  "proverb17": "Rupor hala, gune bhala.",
-  "proverb18": "Sap oi fude, oja oi jhare.",
-  "proverb19": "Suj bharade bharade hurul bharana.",
-  "proverb20": "Uno hele duno bol.",
-  "proverb21": "Jormottun dhormo dangor.",
-  "proverb22": "Hed yeijay hugur bhugona.",
-  "proverb23": "Atte atte nala, gade gade gola.",
-  "proverb24": "Ranga hadiyanou dhoy para, bor gung o chai para.",
-  "proverb25": "Bap cha put cha, ma cha jhi cha.",
-  "proverb26": "Gaz chhene bagle, manij chhene agle.",
-  "proverb27": "Guiyo hobal surungot, bandor hobal taregont.",
-  "proverb28": "Di dhakke seredi panite porana.",
-  "proverb29": "Saghi sade sade jhul shugona.",
-  "proverb30": "Echhe bada hellye s.",
-  "proverb31": "Ebo madattun bijol n yeje gori bor bor hada.",
-  "proverb32": "Chadore benge ghinei, benger chade ghinei.",
-  "proverb33": "Por jagat sep phelanaw dhor.",
-  "proverb34": "Nuo nuo bangri nuo nuo rong, puron ale phele diong.",
-
-
-  "lesson": "Lesson",
+  "@enter": {
+    "description": "Text for the button to enter the app"
+  },
+  
+  
+  "lesson": "Ojhapath",
+  "@lesson": {
+    "description": "Label for lessons section"
+  },
+  
+  "others": "Others",
+  "@others": {
+    "description": "Label for additional options"
+  },
+  
   "vowel": "Vowel",
+  "@vowel": {
+    "description": "Label for vowels section"
+  },
+  
   "vowelChakma": "Gaimattyapath",
+  "@vowelChakma": {
+    "description": "Label for vowels section in Chakma language"
+  },
+  
   "consonant": "Consonant",
+  "@consonant": {
+    "description": "Label for consonants section"
+  },
+  
   "consonantChakma": "Balemattyapath",
+  "@consonantChakma": {
+    "description": "Label for consonants section in Chakma language"
+  },
+  
   "diacritics": "Diacritics",
+  "@diacritics": {
+    "description": "Label for diacritics section"
+  },
+  
   "diacriticsChakma": "Majarapath",
+  "@diacriticsChakma": {
+    "description": "Label for diacritics section in Chakma language"
+  },
+  
   "numerals": "Numerals",
-  "numeralsChakma": "Nadapath"
+  "@numerals": {
+    "description": "Label for numerals section"
+  },
+  
+  "numeralsChakma": "Nadapath",
+  "@numeralsChakma": {
+    "description": "Label for numerals section in Chakma language"
+  },
+  
+  "bottomBarHome": "Home",
+  "@bottomBarHome": {
+    "description": "Label for home button in bottom navigation bar"
+  },
+  
+  "bottomBarTranslations": "Translations",
+  "@bottomBarTranslations": {
+    "description": "Label for translations button in bottom navigation bar"
+  },
+  
+  "bottomBarReport": "Report",
+  "@bottomBarReport": {
+    "description": "Label for report button in bottom navigation bar"
+  },
+  
+  "proverbTitle": "Proverb",
+  "@proverbTitle": {
+    "description": "Title for the proverb section"
+  },
+  
+  "proverb1": "Agha ele baghore dor nei, pada ele rajar laj nei.",
+  "@proverb1": {
+    "description": "Chakma proverb 1"
+  },
+  
+  "proverb2": "Jade jad togay, hangara gad togay.",
+  "@proverb2": {
+    "description": "Chakma proverb 2"
+  },
+  
+  "proverb3": "Tagol dadottun samei dangor.",
+  "@proverb3": {
+    "description": "Chakma proverb 3"
+  },
+  
+  "proverb4": "Dugottun ogoman dangor.",
+  "@proverb4": {
+    "description": "Chakma proverb 4"
+  },
+  
+  "proverb5": "Dhorimme jeda, erimme mora.",
+  "@proverb5": {
+    "description": "Chakma proverb 5"
+  },
+  
+  "proverb6": "Duj hele ujh bare.",
+  "@proverb6": {
+    "description": "Chakma proverb 6"
+  },
+  
+  "proverb7": "Nijo alu nije hure.",
+  "@proverb7": {
+    "description": "Chakma proverb 7"
+  },
+  
+  "proverb8": "Nijo bhat hei por goru sorana.",
+  "@proverb8": {
+    "description": "Chakma proverb 8"
+  },
+  
+  "proverb9": "Nei mogottun han mok bhala, shobai no padhe rajar jhi bhala.",
+  "@proverb9": {
+    "description": "Chakma proverb 9"
+  },
+  
+  "proverb10": "Panit dhubi agana.",
+  "@proverb10": {
+    "description": "Chakma proverb 10"
+  },
+  
+  "proverb11": "Bandorror hi al chora.",
+  "@proverb11": {
+    "description": "Chakma proverb 11"
+  },
+  
+  "proverb12": "Bala dharele bala pai, dharayee bala hudu jay.",
+  "@proverb12": {
+    "description": "Chakma proverb 12"
+  },
+  
+  "proverb13": "Boidyottun pothyo bej.",
+  "@proverb13": {
+    "description": "Chakma proverb 13"
+  },
+  
+  "proverb14": "Maje na chhene jal, bondhay na chhene hal.",
+  "@proverb14": {
+    "description": "Chakma proverb 14"
+  },
+  
+  "proverb15": "Jar hame jare saje, ar hame ladi mare.",
+  "@proverb15": {
+    "description": "Chakma proverb 15"
+  },
+  
+  "proverb16": "Je madit ajar hay, se madit bhor di udona.",
+  "@proverb16": {
+    "description": "Chakma proverb 16"
+  },
+  
+  "proverb17": "Rupor hala, gune bhala.",
+  "@proverb17": {
+    "description": "Chakma proverb 17"
+  },
+  
+  "proverb18": "Sap oi fude, oja oi jhare.",
+  "@proverb18": {
+    "description": "Chakma proverb 18"
+  },
+  
+  "proverb19": "Suj bharade bharade hurul bharana.",
+  "@proverb19": {
+    "description": "Chakma proverb 19"
+  },
+  
+  "proverb20": "Uno hele duno bol.",
+  "@proverb20": {
+    "description": "Chakma proverb 20"
+  },
+  
+  "proverb21": "Jormottun dhormo dangor.",
+  "@proverb21": {
+    "description": "Chakma proverb 21"
+  },
+  
+  "proverb22": "Hed yeijay hugur bhugona.",
+  "@proverb22": {
+    "description": "Chakma proverb 22"
+  },
+  
+  "proverb23": "Atte atte nala, gade gade gola.",
+  "@proverb23": {
+    "description": "Chakma proverb 23"
+  },
+  
+  "proverb24": "Ranga hadiyanou dhoy para, bor gung o chai para.",
+  "@proverb24": {
+    "description": "Chakma proverb 24"
+  },
+  
+  "proverb25": "Bap cha put cha, ma cha jhi cha.",
+  "@proverb25": {
+    "description": "Chakma proverb 25"
+  },
+  
+  "proverb26": "Gaz chhene bagle, manij chhene agle.",
+  "@proverb26": {
+    "description": "Chakma proverb 26"
+  },
+  
+  "proverb27": "Guiyo hobal surungot, bandor hobal taregont.",
+  "@proverb27": {
+    "description": "Chakma proverb 27"
+  },
+  
+  "proverb28": "Di dhakke seredi panite porana.",
+  "@proverb28": {
+    "description": "Chakma proverb 28"
+  },
+  
+  "proverb29": "Saghi sade sade jhul shugona.",
+  "@proverb29": {
+    "description": "Chakma proverb 29"
+  },
+  
+  "proverb30": "Echhe bada hellye s.",
+  "@proverb30": {
+    "description": "Chakma proverb 30"
+  },
+  
+  "proverb31": "Ebo madattun bijol n yeje gori bor bor hada.",
+  "@proverb31": {
+    "description": "Chakma proverb 31"
+  },
+  
+  "proverb32": "Chadore benge ghinei, benger chade ghinei.",
+  "@proverb32": {
+    "description": "Chakma proverb 32"
+  },
+  
+  "proverb33": "Por jagat sep phelanaw dhor.",
+  "@proverb33": {
+    "description": "Chakma proverb 33"
+  },
+  
+  "proverb34": "Nuo nuo bangri nuo nuo rong, puron ale phele diong.",
+  "@proverb34": {
+    "description": "Chakma proverb 34"
+  }
+  
 }

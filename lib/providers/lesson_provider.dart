@@ -3,7 +3,7 @@ import 'package:changma_bhach/providers/score_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-enum LessonType { vowel, consonant }
+enum LessonType { vowel, consonant1, consonant2, consonant3, consonant4 }
 
 class LessonProvider extends ChangeNotifier {
   int _wrongAnswers = 0;
@@ -11,6 +11,7 @@ class LessonProvider extends ChangeNotifier {
   int _currentIndex = 0;
   bool _isCorrectLetter = false;
   bool _lastLetter = false;
+  String _lessonHeading = "vowel";
 
   LessonType _currentLessonType = LessonType.vowel;
   List<Map<String, dynamic>> _selectedLesson = [];
@@ -30,19 +31,47 @@ class LessonProvider extends ChangeNotifier {
   int get lessonWrongAnswer => _wrongAnswers;
   int get lessonCorrectAnswer => _correctAnswers;
   LessonType get currentLessonType => _currentLessonType;
+  String get lessonHeading => _lessonHeading;
 
   void setlessonType(LessonType type) {
     _currentLessonType = type;
-    _selectedLesson = (_currentLessonType == LessonType.vowel)
-        ? Content.vowels
-        : Content.consonants;
+
+    switch (type) {
+      case LessonType.vowel:
+        _selectedLesson = Content.vowels;
+        _lessonHeading = "vowel";
+        break;
+
+      case LessonType.consonant1:
+        _selectedLesson = Content.consonants1;
+        _lessonHeading = "consonant";
+        break;
+
+      case LessonType.consonant2:
+        _selectedLesson = Content.consonants2;
+        _lessonHeading = "consonant";
+
+        break;
+      case LessonType.consonant3:
+        _selectedLesson = Content.consonants3;
+        _lessonHeading = "consonant";
+
+        break;
+      case LessonType.consonant4:
+        _selectedLesson = Content.consonants4;
+        _lessonHeading = "consonant";
+
+        break;
+      default:
+        _selectedLesson = [];
+        break;
+    }
     notifyListeners();
   }
 
   void resetLesson() {
     _currentIndex = 0;
     _wrongAnswers = 0;
-    _isCorrectLetter = false;
     _lastLetter = false;
     _isCorrectLetter = false;
     _lastLetter = false;
@@ -50,29 +79,23 @@ class LessonProvider extends ChangeNotifier {
   }
 
   void drawingValidation(BuildContext context, String letter) {
-    if (_selectedLesson.isEmpty) return;
-
     if (_selectedLesson[currentIndex]["letter"] == letter) {
       _isCorrectLetter = true;
-
-      // Safely access ScoreProvider
       try {
         Provider.of<ScoreProvider>(context, listen: false).incrementScore();
         _correctAnswers++;
       } catch (e) {
-        print('Error incrementing score: $e');
+        // print('Error incrementing score: $e');
       }
 
-      // Check if this is the last letter
       if (_currentIndex == _selectedLesson.length - 1) {
         _lastLetter = true;
       }
-
       notifyListeners();
     } else {
       _isCorrectLetter = false;
       _wrongAnswers++;
-      notifyListeners();
+      notifyListeners(); // Can trigger rebuild
     }
   }
 
@@ -80,11 +103,9 @@ class LessonProvider extends ChangeNotifier {
     if (_isCorrectLetter && _currentIndex < _selectedLesson.length - 1) {
       _currentIndex++;
       _isCorrectLetter = false;
-
       if (_currentIndex < _selectedLesson.length - 1) {
         _lastLetter = false;
       }
-
       notifyListeners();
     }
   }
