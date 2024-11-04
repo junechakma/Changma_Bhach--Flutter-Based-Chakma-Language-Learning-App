@@ -1,262 +1,280 @@
 {
     "@@locale": "bn",
-    
     "appName": "চাঙমা ভাচ",
     "@appName": {
-      "description": "The name of the application"
+        "description": "The name of the application"
     },
-    
     "welcomeMessage": "জু জু, চাকমা ভাষা ও অক্ষর শেখার অ্যাপ এ আপনাকে স্বাগতম !",
     "@welcomeMessage": {
-      "description": "Welcome message for users"
+        "description": "Welcome message for users"
     },
-    
     "enter": "প্রবেশ করুন",
     "@enter": {
-      "description": "Button text for entering the app"
+        "description": "Button text for entering the app"
     },
-    
-
     "lesson": "অঝাপাঠ",
     "@lesson": {
-      "description": "Label for lessons section"
+        "description": "Label for lessons section"
     },
-  
     "others": "অন্যান্য",
     "@others": {
-      "description": "Label for additional options"
+        "description": "Label for additional options"
     },
-    
     "vowel": "স্বরবর্ণ",
     "@vowel": {
-      "description": "Label for vowels section"
+        "description": "Label for vowels section"
     },
-    
     "vowelChakma": "গাইমাত্যা অহ্’রক",
     "@vowelChakma": {
-      "description": "Label for vowels section in Chakma language"
+        "description": "Label for vowels section in Chakma language"
     },
-    
     "consonant": "ব্যঞ্জনবর্ণ",
     "@consonant": {
-      "description": "Label for consonants section"
+        "description": "Label for consonants section"
     },
-    
     "consonantChakma": "বলেমাত্যা অহ্’রক",
     "@consonantChakma": {
-      "description": "Label for consonants section in Chakma language"
+        "description": "Label for consonants section in Chakma language"
     },
-    
     "diacritics": "অণুচিহ্ন",
     "@diacritics": {
-      "description": "Label for diacritics section"
+        "description": "Label for diacritics section"
     },
-    
     "diacriticsChakma": "মাজারা পাত",
     "@diacriticsChakma": {
-      "description": "Label for diacritics section in Chakma language"
+        "description": "Label for diacritics section in Chakma language"
     },
-    
     "numerals": "সংখ্যা",
     "@numerals": {
-      "description": "Label for numerals section"
+        "description": "Label for numerals section"
     },
-    
     "numeralsChakma": "নাদা পাত",
     "@numeralsChakma": {
-      "description": "Label for numerals section in Chakma language"
+        "description": "Label for numerals section in Chakma language"
     },
-    
     "bottomBarHome": "হোম",
     "@bottomBarHome": {
-      "description": "Home label for bottom navigation bar"
+        "description": "Home label for bottom navigation bar"
     },
-    
     "bottomBarTranslations": "ট্রান্সলেশন",
     "@bottomBarTranslations": {
-      "description": "Translations label for bottom navigation bar"
+        "description": "Translations label for bottom navigation bar"
     },
-    
     "bottomBarReport": "রিপোর্ট",
     "@bottomBarReport": {
-      "description": "Report label for bottom navigation bar"
+        "description": "Report label for bottom navigation bar"
+    },
+
+
+    
+    "confirm_exit_title": "প্রস্থান নিশ্চিত করুন",
+    "@confirm_exit_title": {
+        "description": "Title for the confirmation dialog when exiting the app"
+    },
+    "confirm_exit_message": "আপনি কি সত্যিই হোম পেজে যেতে চান?",
+    "@confirm_exit_message": {
+        "description": "Message in the confirmation dialog asking if the user wants to exit to home"
+    },
+    "cancel_button": "বাতিল করুন",
+    "@cancel_button": {
+        "description": "Text for the cancel button in the confirmation dialog"
+    },
+    "yes_button": "হ্যাঁ",
+    "@yes_button": {
+        "description": "Text for the yes button in the confirmation dialog"
+    },
+
+
+    "draw_button": "আঁকুন",
+    "@draw_button": {
+        "description": "Text for the draw button in the Lesson Page"
+    },
+
+    "draw_bellow":"নিচে অক্ষরটি আঁকুন",
+    "@draw_bellow": {
+      "description": "Title for the in the Draw Page"
+    },
+
+    "clear_button": "মুছুন",
+    "@clear_button": {
+        "description": "Text for the clear canvas in the Drawing Screen"
+    },
+
+    "prediction_button": "যাচাই করুন",
+    "@prediction_button": {
+        "description": "Text for the prediction in the Drawing Screen"
+    },
+
+    "error_drawing_message":"ভুল অক্ষর, আবার চেষ্টা করুন!",
+    "@error_drawing_message": {
+        "description": "Error message for the prediction in the Drawing Screen"
+    },
+
+    "congratulation_message": "অভিনন্দন!",
+    "@congratulation_message":{
+        "description": "Congratulations Message for the prediction in the Drawing Screen"
+    },
+
+
+    "congratulation_alert_message": "এরপর কি করতে চাও?",
+    "@congratulation_alert_message":{
+        "description": "Congratulations Subtext for the prediction in the Drawing Screen"
+    },
+
+    "congratulation_alert_result_button":"ফলাফল",
+    "@congratulation_alert_result_button":{
+         "description": "Congratulations dialog box result button text"
+    },
+
+    "congratulation_alert_restart_button":"পুনরায় আঁকুন",
+    "@congratulation_alert_restart_button":{
+        "description": "Congratulations dialog box restart button text"
     },
     
+    "congratulation_alert_next_button":"পরের অক্ষর",
+    "@congratulation_alert_next_button":{
+        "description": "Congratulations dialog box next button text"
+    },
+
+
     "proverbTitle": "প্রবাদ",
     "@proverbTitle": {
-      "description": "Title for the proverb section"
+        "description": "Title for the proverb section"
     },
-  
     "proverb1": "আঘা এলে বাঘরে দর নেই, পাদা এলে রাজারে লাজ নেই।",
     "@proverb1": {
-      "description": "Chakma proverb 1"
+        "description": "Chakma proverb 1"
     },
-    
     "proverb2": "জাদে জাদ তগায়, হাঙারা গাদ তগায়।",
     "@proverb2": {
-      "description": "Chakma proverb 2"
+        "description": "Chakma proverb 2"
     },
-    
     "proverb3": "টাগল দাদত্তুন সামেই দাঙর।",
     "@proverb3": {
-      "description": "Chakma proverb 3"
+        "description": "Chakma proverb 3"
     },
-    
     "proverb4": "দুগত্তুন অগমান দাঙর।",
     "@proverb4": {
-      "description": "Chakma proverb 4"
+        "description": "Chakma proverb 4"
     },
-    
     "proverb5": "ধরিম্মে জেদা, এরিম্মে মরা।",
     "@proverb5": {
-      "description": "Chakma proverb 5"
+        "description": "Chakma proverb 5"
     },
-    
     "proverb6": "দুজ্‌ হেলে উজ্‌ বারে।",
     "@proverb6": {
-      "description": "Chakma proverb 6"
+        "description": "Chakma proverb 6"
     },
-    
     "proverb7": "নিজো আলু নিজে হুরে।",
     "@proverb7": {
-      "description": "Chakma proverb 7"
+        "description": "Chakma proverb 7"
     },
-    
     "proverb8": "নিজো ভাত হেই পর গরু চড়ানা।",
     "@proverb8": {
-      "description": "Chakma proverb 8"
+        "description": "Chakma proverb 8"
     },
-    
     "proverb9": "নেই মগত্তুন হান মোক ভালা, সবাই নঅ পাদে রাজার ঝি ভালা।",
     "@proverb9": {
-      "description": "Chakma proverb 9"
+        "description": "Chakma proverb 9"
     },
-    
     "proverb10": "পানিত ঢুবি আগানা।",
     "@proverb10": {
-      "description": "Chakma proverb 10"
+        "description": "Chakma proverb 10"
     },
-    
     "proverb11": "বান্দরর হি আল ছরা।",
     "@proverb11": {
-      "description": "Chakma proverb 11"
+        "description": "Chakma proverb 11"
     },
-    
     "proverb12": "বালা ধারেলে বালা পাই, ধারেয়ে বালা হুদু যায়।",
     "@proverb12": {
-      "description": "Chakma proverb 12"
+        "description": "Chakma proverb 12"
     },
-    
     "proverb13": "বৈদ্যত্তুন পথ্য বেজ।",
     "@proverb13": {
-      "description": "Chakma proverb 13"
+        "description": "Chakma proverb 13"
     },
-    
     "proverb14": "মাজে ন চিনে জাল, বন্ধায় ন চিনে হাল।",
     "@proverb14": {
-      "description": "Chakma proverb 14"
+        "description": "Chakma proverb 14"
     },
-    
     "proverb15": "যার হামে যারে সাজে, আর হামে লাদি মারে।",
     "@proverb15": {
-      "description": "Chakma proverb 15"
+        "description": "Chakma proverb 15"
     },
-    
     "proverb16": "যে মাদিট আজার হায়, সে মাদিত ভর দি উদোনা।",
     "@proverb16": {
-      "description": "Chakma proverb 16"
+        "description": "Chakma proverb 16"
     },
-    
     "proverb17": "রূপো হালা, গুনে ভালা।",
     "@proverb17": {
-      "description": "Chakma proverb 17"
+        "description": "Chakma proverb 17"
     },
-    
     "proverb18": "সাপ ওই ফুদে, ওজা ওই ঝারে।",
     "@proverb18": {
-      "description": "Chakma proverb 18"
+        "description": "Chakma proverb 18"
     },
-    
     "proverb19": "সুজ ভরাদে ভরাদে হুরোল ভরানা।",
     "@proverb19": {
-      "description": "Chakma proverb 19"
+        "description": "Chakma proverb 19"
     },
-    
     "proverb20": "উনো হেলে দুনো বল।",
     "@proverb20": {
-      "description": "Chakma proverb 20"
+        "description": "Chakma proverb 20"
     },
-    
     "proverb21": "জর্মত্তুন ধর্ম দাঙর।",
     "@proverb21": {
-      "description": "Chakma proverb 21"
+        "description": "Chakma proverb 21"
     },
-    
     "proverb22": "হেদ্‌ যেইজায় হুগুর ভুগোনা।",
     "@proverb22": {
-      "description": "Chakma proverb 22"
+        "description": "Chakma proverb 22"
     },
-    
     "proverb23": "আত্তে আত্তে নলা, গাদে গাদে গলা।",
     "@proverb23": {
-      "description": "Chakma proverb 23"
+        "description": "Chakma proverb 23"
     },
-    
     "proverb24": "রাঙা হাদিয়ানও ধয় পারা, বড় গাঙ ও চাই পারা।",
     "@proverb24": {
-      "description": "Chakma proverb 24"
+        "description": "Chakma proverb 24"
     },
-    
     "proverb25": "বাপ চা পুত চা, মা চা ঝি চা।",
     "@proverb25": {
-      "description": "Chakma proverb 25"
+        "description": "Chakma proverb 25"
     },
-    
     "proverb26": "গাজ চিনে বাগলে, মানিজ চিনে আগলে।",
     "@proverb26": {
-      "description": "Chakma proverb 26"
+        "description": "Chakma proverb 26"
     },
-    
     "proverb27": "গুইয়ো হবাল সুরুঙত, বান্দর হবাল তারেঙত।",
     "@proverb27": {
-      "description": "Chakma proverb 27"
+        "description": "Chakma proverb 27"
     },
-    
     "proverb28": "দি ধাক্কে সেরেদি পানিত পরানা।",
     "@proverb28": {
-      "description": "Chakma proverb 28"
+        "description": "Chakma proverb 28"
     },
-    
     "proverb29": "সাগি সাদে সাদে ঝুল শুগোনা।",
     "@proverb29": {
-      "description": "Chakma proverb 29"
+        "description": "Chakma proverb 29"
     },
-    
     "proverb30": "এচ্ছে বদা হেল্ল্যে স।",
     "@proverb30": {
-      "description": "Chakma proverb 30"
+        "description": "Chakma proverb 30"
     },
-    
     "proverb31": "এব মাদাত্তুন বিজল ন যেয়ে গরি বড় বড় হদা।",
     "@proverb31": {
-      "description": "Chakma proverb 31"
+        "description": "Chakma proverb 31"
     },
-    
     "proverb32": "চাদরে বেঙে ঘিনেই, বেঙরে চাদে ঘিনেই।",
     "@proverb32": {
-      "description": "Chakma proverb 32"
+        "description": "Chakma proverb 32"
     },
-    
     "proverb33": "পর জাগাত সেপ ফেলানাও ধর।",
     "@proverb33": {
-      "description": "Chakma proverb 33"
+        "description": "Chakma proverb 33"
     },
-    
     "proverb34": "নুও নুও বাঙরি নুও নুও রঙ, পুরন অলে ফেলে দিওং.",
     "@proverb34": {
-      "description": "Chakma proverb 34"
+        "description": "Chakma proverb 34"
     }
-  
-   
-  }
-  
+}

@@ -3,13 +3,14 @@ import 'dart:typed_data';
 import 'package:changma_bhach/logic/character_recognition.dart';
 import 'package:changma_bhach/presentation/screens/lessons/lesson_screen.dart';
 import 'package:changma_bhach/presentation/styles/app_colors.dart';
+import 'package:changma_bhach/presentation/styles/app_images.dart';
 import 'package:changma_bhach/presentation/styles/text_styles.dart';
 import 'package:changma_bhach/presentation/widgets/score_counter.dart';
 import 'package:changma_bhach/providers/lesson_provider.dart';
 import 'package:changma_bhach/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'dart:ui' as ui;
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 
 class DrawingScreen extends StatefulWidget {
@@ -69,12 +70,30 @@ class DrawingScreenState extends State<DrawingScreen> {
     if (lessonProvider.isCorrectLetter) {
       _showCongratulationsDialog();
     } else {
-      // Optionally show an error message
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Incorrect character, please try again!')),
-      );
+      _showErrorDialog(context);
       _clearCanvas();
     }
+  }
+
+  void _showErrorDialog(BuildContext context) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        backgroundColor: const Color.fromARGB(41, 255, 0, 25),
+        content: Column(
+          children: [
+            Image.asset(
+              AppImages.snackbarImage,
+              width: 200,
+              height: 200,
+            ),
+            Text(
+              AppLocalizations.of(context)!.error_drawing_message,
+              style: TextStyles.headingText.copyWith(color: Colors.white),
+            )
+          ],
+        ),
+      ),
+    );
   }
 
   void _showCongratulationsDialog() {
@@ -83,24 +102,17 @@ class DrawingScreenState extends State<DrawingScreen> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text('Congratulations!'),
+          title: Text(AppLocalizations.of(context)!.congratulation_message),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              AnimatedContainer(
-                duration: const Duration(seconds: 1),
-                padding: const EdgeInsets.all(20),
-                decoration: BoxDecoration(
-                  color: Colors.green,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: const Text(
-                  'You guessed the right character!',
-                  style: TextStyle(color: Colors.white, fontSize: 18),
-                ),
+              Image.asset(
+                AppImages.congratulations,
+                width: 200,
+                height: 200,
               ),
               const SizedBox(height: 20),
-              const Text('What would you like to do next?'),
+              Text(AppLocalizations.of(context)!.congratulation_alert_message),
             ],
           ),
           actions: [
@@ -109,7 +121,8 @@ class DrawingScreenState extends State<DrawingScreen> {
                 Navigator.of(context).pop(); // Close the dialog
                 _clearCanvas(); // Optionally clear the canvas
               },
-              child: const Text('Retry'),
+              child: Text(AppLocalizations.of(context)!
+                  .congratulation_alert_restart_button),
             ),
             TextButton(
               onPressed: () {
@@ -131,7 +144,11 @@ class DrawingScreenState extends State<DrawingScreen> {
                 }
                 // Navigate to next lesson
               },
-              child: Text(lessonProvider.lastLetter ? "Result" : "Next Lesson"),
+              child: Text(lessonProvider.lastLetter
+                  ? AppLocalizations.of(context)!
+                      .congratulation_alert_result_button
+                  : AppLocalizations.of(context)!
+                      .congratulation_alert_next_button),
             ),
           ],
         );
@@ -150,7 +167,7 @@ class DrawingScreenState extends State<DrawingScreen> {
       appBar: AppBar(
         backgroundColor: AppColors.bgWhite,
         title: Text(
-          "নিচে আকুন ",
+          AppLocalizations.of(context)!.draw_bellow,
           style: TextStyles.lessonText.copyWith(fontSize: 22),
         ),
         centerTitle: true,
@@ -193,14 +210,20 @@ class DrawingScreenState extends State<DrawingScreen> {
               children: [
                 ElevatedButton(
                   onPressed: _clearCanvas,
-                  child: const Row(
-                    children: [Text("মুছুন"), Icon(Icons.clear_rounded)],
+                  child: Row(
+                    children: [
+                      Text(AppLocalizations.of(context)!.clear_button),
+                      const Icon(Icons.clear_rounded)
+                    ],
                   ),
                 ),
                 ElevatedButton(
                   onPressed: _handlePrediction,
-                  child: const Row(
-                    children: [Text("যাচাই করুন"), Icon(Icons.auto_awesome)],
+                  child: Row(
+                    children: [
+                      Text(AppLocalizations.of(context)!.prediction_button),
+                      const Icon(Icons.auto_awesome)
+                    ],
                   ),
                 ),
               ],

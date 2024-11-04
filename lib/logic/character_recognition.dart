@@ -72,7 +72,7 @@ class CharacterRecognition {
 
       await _runTFLiteModel(inputArray);
     } catch (e) {
-      // print("Error preparing image for model: $e");
+      print("Error preparing image for model: $e");
     }
   }
 

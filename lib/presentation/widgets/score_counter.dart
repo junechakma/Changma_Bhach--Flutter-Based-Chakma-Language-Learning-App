@@ -20,7 +20,6 @@ class ScoreCounter extends StatelessWidget {
         children: [
           Consumer<ScoreProvider>(builder: (context, scoreCounter, child) {
             final formattedScore = numberFormatter.format(scoreCounter.score);
-
             return Text(
               formattedScore.toString(),
               style: TextStyles.scoreCounter,

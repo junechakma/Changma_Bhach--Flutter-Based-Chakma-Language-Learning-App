@@ -13,8 +13,8 @@ class TextStyles {
 
   static const TextStyle scoreCounter = TextStyle(
     fontWeight: FontWeight.w500,
-    fontSize: 30,
-    color: Colors.black,
+    fontSize: 40,
+    color: AppColors.darkBlue,
   );
 
   static const TextStyle categoryHeading = TextStyle(

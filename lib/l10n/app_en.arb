@@ -80,11 +80,85 @@
   "@bottomBarReport": {
     "description": "Label for report button in bottom navigation bar"
   },
-  
+
   "proverbTitle": "Proverb",
   "@proverbTitle": {
     "description": "Title for the proverb section"
   },
+
+  
+  
+    "confirm_exit_title": "Confirm Exit",
+    "@confirm_exit_title": {
+      "description": "Title for the confirmation dialog when exiting the app"
+    },
+    
+    "confirm_exit_message": "Do you really want to go to home?",
+    "@confirm_exit_message": {
+      "description": "Message in the confirmation dialog asking if the user wants to exit to home"
+    },
+    
+    "cancel_button": "Cancel",
+    "@cancel_button": {
+      "description": "Text for the cancel button in the confirmation dialog"
+    },
+    
+    "yes_button": "Yes",
+    "@yes_button": {
+      "description": "Text for the yes button in the confirmation dialog"
+    },
+  
+    "draw_button": "Draw",
+    "@draw_button": {
+        "description": "Text for the draw button in the Lesson Page"
+    },
+
+    "draw_bellow":"Draw the character bellow",
+    "@draw_bellow": {
+      "description": "Title for the in the Draw Page"
+    },
+  
+    "clear_button": "Clear",
+    "@clear_button": {
+        "description": "Text for the clear canvas in the Drawing Screen"
+    },
+
+    "error_drawing_message":"Incorrect character, please try again!",
+    "@error_drawing_message": {
+        "description": "Error message for the prediction in the Drawing Screen"
+    },
+
+    "prediction_button": "Check",
+    "@prediction_button": {
+        "description": "Text for the prediction in the Drawing Screen"
+    },
+
+    
+    "congratulation_message": "Congratulations!",
+    "@congratulation_message":{
+        "description": "Congratulations Message for the prediction in the Drawing Screen"
+    },
+
+    
+    "congratulation_alert_message": "What would you like to do next?",
+    "@congratulation_alert_message":{
+        "description": "Congratulations Subtext for the prediction in the Drawing Screen"
+    },
+
+    "congratulation_alert_result_button":"Result",
+    "@congratulation_alert_result_button":{
+         "description": "Congratulations dialog box result button text"
+    },
+
+    "congratulation_alert_restart_button":"Retry",
+    "@congratulation_alert_restart_button":{
+        "description": "Congratulations dialog box restart button text"
+    },
+    "congratulation_alert_next_button":"Next Lesson",
+    "@congratulation_alert_next_button":{
+        "description": "Congratulations dialog box next button text"
+    },
+
   
   "proverb1": "Agha ele baghore dor nei, pada ele rajar laj nei.",
   "@proverb1": {

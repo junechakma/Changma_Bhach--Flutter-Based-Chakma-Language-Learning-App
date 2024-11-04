@@ -106,12 +106,17 @@ class _LessonScreenState extends State<LessonScreen> {
                                 .copyWith(fontSize: 18),
                           ),
                           Text(
+                            " ",
+                            style: TextStyles.subHeadingText
+                                .copyWith(fontSize: 18),
+                          ),
+                          Text(
                             lessonProvider.content["word"],
                             style: TextStyles.subHeadingText
                                 .copyWith(fontSize: 18),
                           ),
                           Text(
-                            "-",
+                            " >> ",
                             style: TextStyles.subHeadingText
                                 .copyWith(fontSize: 18),
                           ),
@@ -144,10 +149,10 @@ class _LessonScreenState extends State<LessonScreen> {
                     onPressed: () {
                       Navigator.pushNamed(context, AppRoutes.drawingScreen);
                     },
-                    child: const Row(
+                    child: Row(
                       children: [
-                        Text("আকুন"),
-                        Icon(Icons.brush)
+                        Text(AppLocalizations.of(context)!.draw_button),
+                        const Icon(Icons.brush)
                       ], // Removed `Flexible`
                     ),
                   ),
@@ -183,18 +188,18 @@ Future showExitAlert(BuildContext context) {
     context: context,
     builder: (context) {
       return AlertDialog(
-        title: const Text('Confirm Exit'),
-        content: const Text('Do you really want to go to home?'),
+        title: Text(AppLocalizations.of(context)!.confirm_exit_title),
+        content: Text(AppLocalizations.of(context)!.confirm_exit_message),
         actions: [
           TextButton(
             onPressed: () => Navigator.of(context).pop(false),
-            child: const Text('Cancel'),
+            child: Text(AppLocalizations.of(context)!.cancel_button),
           ),
           TextButton(
             onPressed: () {
               Navigator.pushReplacementNamed(context, AppRoutes.bottomNav);
             },
-            child: const Text('Yes'),
+            child: Text(AppLocalizations.of(context)!.yes_button),
           ),
         ],
       );
