@@ -1,8 +1,11 @@
 import 'package:changma_bhach/presentation/styles/app_colors.dart';
+import 'package:changma_bhach/presentation/styles/text_styles.dart';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:changma_bhach/providers/lesson_provider.dart';
 import 'package:changma_bhach/routes/app_routes.dart';
+import 'package:percent_indicator/percent_indicator.dart';
 
 class ResultScreen extends StatelessWidget {
   const ResultScreen({super.key});
@@ -24,27 +27,28 @@ class ResultScreen extends StatelessWidget {
         appBar: AppBar(
           title: const Text('Lesson Result'),
           centerTitle: true,
+          automaticallyImplyLeading: false,
         ),
-        body: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                // Overall Performance Section
-                _buildPerformanceHeader(lessonProvider),
+        body: Container(
+          padding: const EdgeInsets.all(20),
+          decoration: const BoxDecoration(color: AppColors.bgWhite),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              // Overall Performance Section
+              _buildPerformanceHeader(lessonProvider),
 
-                const SizedBox(height: 20),
+              const SizedBox(height: 20),
 
-                // Detailed Score Breakdown
-                _buildScoreBreakdown(lessonProvider),
+              // Detailed Score Breakdown
+              _buildScoreBreakdown(lessonProvider),
 
-                const SizedBox(height: 20),
+              const SizedBox(height: 20),
 
-                // Action Buttons
-                _buildActionButtons(context),
-              ],
-            ),
+              // Action Buttons
+              _buildActionButtons(context),
+            ],
           ),
         ),
       ),
@@ -60,75 +64,96 @@ class ResultScreen extends StatelessWidget {
             .toStringAsFixed(1)
         : '0.0';
 
-    return Card(
-      color: _getPerformanceColor(double.parse(performancePercentage)),
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            const Text(
-              'Your Performance',
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-              ),
-            ),
-            const SizedBox(height: 10),
-            Text(
-              '$performancePercentage%',
-              style: const TextStyle(
-                fontSize: 36,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-              ),
-            ),
-          ],
+    return Column(
+      children: [
+        const Text(
+          ' Performance ',
+          style: TextStyles.categoryHeading,
         ),
-      ),
+
+        const SizedBox(height: 10),
+        // Text(
+        //   '$performancePercentage%',
+        //   style: const TextStyle(
+        //     fontSize: 36,
+        //     fontWeight: FontWeight.bold,
+        //     color: Colors.white,
+        //   ),
+        // ),
+
+        CircularPercentIndicator(
+          radius: 80.0,
+          lineWidth: 20.0,
+          animation: true,
+          percent: double.parse(performancePercentage) / 100,
+          center: Text(
+            "$performancePercentage %",
+            style: const TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 20.0,
+                color: Colors.black),
+          ),
+          circularStrokeCap: CircularStrokeCap.round,
+          progressColor:
+              _getPerformanceColor(double.parse(performancePercentage)),
+        ),
+
+        const SizedBox(height: 20),
+      ],
     );
   }
 
   Widget _buildScoreBreakdown(LessonProvider lessonProvider) {
-    return Card(
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+    return Container(
+      padding: const EdgeInsets.all(16.0),
+      child: Column(children: [
+        const Text(
+          'You Have Total ',
+          style: TextStyles.categoryHeading,
+        ),
+        Text(
+          '${lessonProvider.lessonCorrectAnswer + lessonProvider.lessonWrongAnswer} Atempts ',
+          style: TextStyles.categoryHeading,
+        ),
+        const SizedBox(height: 20),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            _buildScoreRow(
-                'Total Questions',
-                lessonProvider.lessonCorrectAnswer +
-                    lessonProvider.lessonWrongAnswer),
-            const Divider(),
             _buildScoreRow(
                 'Correct Answers', lessonProvider.lessonCorrectAnswer,
                 color: Colors.green),
             _buildScoreRow('Wrong Answers', lessonProvider.lessonWrongAnswer,
-                color: Colors.red),
+                color: Colors.blue),
           ],
         ),
-      ),
+      ]),
     );
   }
 
   Widget _buildScoreRow(String label, int value, {Color? color}) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return Container(
+      padding: const EdgeInsets.all(12.0),
+      decoration:
+          BoxDecoration(borderRadius: BorderRadius.circular(10), color: color),
+      child: Column(
         children: [
-          Text(
-            label,
-            style: const TextStyle(fontSize: 16),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                value.toString(),
+                style: const TextStyle(
+                  fontSize: 40,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
+              const Icon(Icons.fork_right)
+            ],
           ),
           Text(
-            value.toString(),
-            style: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-              color: color,
-            ),
+            label,
+            style: TextStyles.subHeadingText.copyWith(color: Colors.white),
           ),
         ],
       ),
@@ -200,7 +225,5 @@ Future<bool> showExitConfirmationDialog(BuildContext context) {
         ],
       );
     },
-  ).then((value) =>
-      value ??
-      false); // Returns false if the dialog is dismissed without a selection
+  ).then((value) => value ?? false);
 }

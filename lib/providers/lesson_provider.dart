@@ -72,6 +72,7 @@ class LessonProvider extends ChangeNotifier {
   void resetLesson() {
     _currentIndex = 0;
     _wrongAnswers = 0;
+    _correctAnswers = 0;
     _lastLetter = false;
     _isCorrectLetter = false;
     _lastLetter = false;
