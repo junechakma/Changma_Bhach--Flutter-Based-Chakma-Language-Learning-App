@@ -14,29 +14,29 @@ class TextStyles {
   static const TextStyle scoreCounter = TextStyle(
     fontWeight: FontWeight.w500,
     fontSize: 40,
-    color: AppColors.darkBlue,
+    color: AppColors.dark,
   );
 
   static const TextStyle categoryHeading = TextStyle(
     fontSize: 22,
-    fontWeight: FontWeight.bold,
-    color: Colors.black,
+    fontWeight: FontWeight.w500,
+    color: AppColors.dark,
   );
 
   static const TextStyle headingText = TextStyle(
     fontSize: 18,
     fontWeight: FontWeight.bold,
-    color: Colors.black,
+    color: AppColors.dark,
   );
   static const TextStyle subHeadingText = TextStyle(
     fontSize: 16,
     fontWeight: FontWeight.normal,
-    color: Colors.black,
+    color: AppColors.dark,
   );
 
   static const TextStyle lessonText = TextStyle(
     fontSize: 18,
     fontWeight: FontWeight.normal,
-    color: Colors.black,
+    color: AppColors.dark,
   );
 }

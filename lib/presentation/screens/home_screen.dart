@@ -44,32 +44,26 @@ class HomeScreen extends StatelessWidget {
               const SizedBox(
                 height: 20,
               ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "Let's learn",
-                    style: TextStyles.subHeadingText
-                        .copyWith(fontSize: 32, color: AppColors.dark),
-                  ),
-                  Text("Something interesting",
-                      style: TextStyles.headingText
-                          .copyWith(fontSize: 32, color: AppColors.primary)),
-                ],
-              ),
+              // Column(
+              //   crossAxisAlignment: CrossAxisAlignment.start,
+              //   children: [
+              //     Text(
+              //       "Let's learn",
+              //       style: TextStyles.subHeadingText
+              //           .copyWith(fontSize: 32, color: AppColors.dark),
+              //     ),
+              //     Text("Something interesting",
+              //         style: TextStyles.headingText
+              //             .copyWith(fontSize: 32, color: AppColors.primary)),
+              //   ],
+              // ),
               const SizedBox(
                 height: 40,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    AppLocalizations.of(context)!.lesson,
-                    style: TextStyles.categoryHeading
-                        .copyWith(fontWeight: FontWeight.normal),
-                  ),
-                  const Icon(Icons.arrow_right)
-                ],
+              Text(
+                AppLocalizations.of(context)!.lesson,
+                style: TextStyles.categoryHeading
+                    .copyWith(fontWeight: FontWeight.normal),
               ),
               const SizedBox(
                 height: 20,
@@ -81,7 +75,7 @@ class HomeScreen extends StatelessWidget {
                       children: [
                         LessonButton(
                           bgColor: AppColors.tertiaryLight,
-                          lessonIconText: "𑄃",
+                          lessonIconText: "",
                           headingText: AppLocalizations.of(context)!.vowel,
                           subHeadingText:
                               AppLocalizations.of(context)!.vowelChakma,
@@ -106,7 +100,7 @@ class HomeScreen extends StatelessWidget {
                         ),
                         LessonButton(
                           bgColor: AppColors.quaternaryLight,
-                          lessonIconText: "𑄬 -  𑄰 ",
+                          lessonIconText: "",
                           headingText: AppLocalizations.of(context)!.diacritics,
                           subHeadingText:
                               AppLocalizations.of(context)!.diacriticsChakma,
@@ -121,6 +115,8 @@ class HomeScreen extends StatelessWidget {
                                           selectedLessonType:
                                               LessonType.consonant2,
                                         )));
+                            Provider.of<LessonProvider>(context, listen: false)
+                                .resetLesson();
                           },
                         ),
                       ],
@@ -132,7 +128,7 @@ class HomeScreen extends StatelessWidget {
                       children: [
                         LessonButton(
                           bgColor: AppColors.secondaryLight,
-                          lessonIconText: "𑄃",
+                          lessonIconText: "",
                           headingText: AppLocalizations.of(context)!.consonant,
                           subHeadingText:
                               AppLocalizations.of(context)!.consonantChakma,
@@ -140,16 +136,7 @@ class HomeScreen extends StatelessWidget {
                           height: 0.2,
                           bgImage: AppImages.consonantImage,
                           onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const LessonScreen(
-                                        selectedLessonType: LessonType.vowel,
-                                      )),
-                            );
-
-                            Provider.of<LessonProvider>(context, listen: false)
-                                .resetLesson();
+                            showConsonantDialog(context);
                           },
                         ),
                         const SizedBox(
@@ -157,7 +144,7 @@ class HomeScreen extends StatelessWidget {
                         ),
                         LessonButton(
                           bgColor: AppColors.tertiaryLight,
-                          lessonIconText: "𑄷-𑄿",
+                          lessonIconText: "",
                           headingText: AppLocalizations.of(context)!.numerals,
                           subHeadingText:
                               AppLocalizations.of(context)!.numeralsChakma,
@@ -172,6 +159,8 @@ class HomeScreen extends StatelessWidget {
                                           selectedLessonType:
                                               LessonType.consonant3,
                                         )));
+                            Provider.of<LessonProvider>(context, listen: false)
+                                .resetLesson();
                           },
                         ),
                       ],
@@ -179,155 +168,13 @@ class HomeScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              // SingleChildScrollView(
-              //   scrollDirection: Axis.horizontal,
-              //   child: Row(
-              //     children: [
-              //       LessonButton(
-              //         bgColor: AppColors.lightPeriwinkle,
-              //         lessonIconText: "𑄃",
-              //         headingText: AppLocalizations.of(context)!.vowel,
-              //         subHeadingText: AppLocalizations.of(context)!.vowelChakma,
-              //         onTap: () {
-              //           Navigator.push(
-              //             context,
-              //             MaterialPageRoute(
-              //                 builder: (context) => const LessonScreen(
-              //                       selectedLessonType: LessonType.vowel,
-              //                     )),
-              //           );
-
-              //           Provider.of<LessonProvider>(context, listen: false)
-              //               .resetLesson();
-              //         },
-              //       ),
-              //       LessonButton(
-              //         bgColor: AppColors.paleRobinEggBlue,
-              //         lessonIconText: "𑄇-𑄎",
-              //         headingText: AppLocalizations.of(context)!.consonant,
-              //         subHeadingText:
-              //             AppLocalizations.of(context)!.consonantChakma,
-              //         onTap: () {
-              //           Navigator.push(
-              //               context,
-              //               MaterialPageRoute(
-              //                   builder: (context) => const LessonScreen(
-              //                         selectedLessonType: LessonType.consonant1,
-              //                       )));
-              //           Provider.of<LessonProvider>(context, listen: false)
-              //               .resetLesson();
-              //         },
-              //       ),
-              //       LessonButton(
-              //         bgColor: AppColors.yellowCrayola,
-              //         lessonIconText: "𑄏-𑄖",
-              //         headingText: AppLocalizations.of(context)!.consonant,
-              //         subHeadingText:
-              //             AppLocalizations.of(context)!.consonantChakma,
-              //         onTap: () {
-              //           Navigator.push(
-              //               context,
-              //               MaterialPageRoute(
-              //                   builder: (context) => const LessonScreen(
-              //                         selectedLessonType: LessonType.consonant2,
-              //                       )));
-              //           Provider.of<LessonProvider>(context, listen: false)
-              //               .resetLesson();
-              //         },
-              //       ),
-              //       LessonButton(
-              //         bgColor: AppColors.skyBlueCrayola,
-              //         lessonIconText: "𑄗-𑄞",
-              //         headingText: AppLocalizations.of(context)!.consonant,
-              //         subHeadingText:
-              //             AppLocalizations.of(context)!.consonantChakma,
-              //         onTap: () {
-              //           Navigator.push(
-              //               context,
-              //               MaterialPageRoute(
-              //                   builder: (context) => const LessonScreen(
-              //                         selectedLessonType: LessonType.consonant3,
-              //                       )));
-              //           Provider.of<LessonProvider>(context, listen: false)
-              //               .resetLesson();
-              //         },
-              //       ),
-              //       LessonButton(
-              //         bgColor: AppColors.lightPeriwinkle,
-              //         lessonIconText: "𑄟-𑄦",
-              //         headingText: AppLocalizations.of(context)!.consonant,
-              //         subHeadingText:
-              //             AppLocalizations.of(context)!.consonantChakma,
-              //         onTap: () {
-              //           Navigator.push(
-              //               context,
-              //               MaterialPageRoute(
-              //                   builder: (context) => const LessonScreen(
-              //                         selectedLessonType: LessonType.consonant4,
-              //                       )));
-              //           Provider.of<LessonProvider>(context, listen: false)
-              //               .resetLesson();
-              //         },
-              //       ),
-              //     ],
-              //   ),
-              // ),
               const SizedBox(
-                height: 20,
-              ),
-              Text(
-                AppLocalizations.of(context)!.others,
-                style: TextStyles.categoryHeading,
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              // SingleChildScrollView(
-              //   scrollDirection: Axis.horizontal,
-              //   child: Row(
-              //     children: [
-              //       LessonButton(
-              //         bgColor: AppColors.yellowCrayola,
-              //         lessonIconText: "𑄬 -  𑄰 ",
-              //         headingText: AppLocalizations.of(context)!.diacritics,
-              //         subHeadingText:
-              //             AppLocalizations.of(context)!.diacriticsChakma,
-              //         onTap: () {
-              //           Navigator.push(
-              //               context,
-              //               MaterialPageRoute(
-              //                   builder: (context) => const LessonScreen(
-              //                         selectedLessonType: LessonType.consonant2,
-              //                       )));
-              //         },
-              //       ),
-              //       LessonButton(
-              //         bgColor: AppColors.skyBlueCrayola,
-              //         lessonIconText: "𑄷-𑄿",
-              //         headingText: AppLocalizations.of(context)!.numerals,
-              //         subHeadingText:
-              //             AppLocalizations.of(context)!.numeralsChakma,
-              //         onTap: () {
-              //           Navigator.push(
-              //               context,
-              //               MaterialPageRoute(
-              //                   builder: (context) => const LessonScreen(
-              //                         selectedLessonType: LessonType.consonant3,
-              //                       )));
-              //         },
-              //       ),
-              //     ],
-              //   ),
-              // ),
-              const SizedBox(
-                height: 20,
-              ),
-              const SizedBox(
-                height: 20,
+                height: 40,
               ),
               Text(
                 AppLocalizations.of(context)!.proverbTitle,
-                style: TextStyles.categoryHeading,
+                style: TextStyles.categoryHeading
+                    .copyWith(fontWeight: FontWeight.normal),
               ),
               const ProverbCarousal(),
             ],
@@ -336,4 +183,104 @@ class HomeScreen extends StatelessWidget {
       ),
     );
   }
+}
+
+void showConsonantDialog(BuildContext context) {
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return SimpleDialog(
+        backgroundColor: AppColors.backgroundColor,
+        contentPadding: const EdgeInsets.all(40),
+        shadowColor: AppColors.secondary,
+        children: [
+          LessonButton(
+            bgColor: AppColors.secondaryLight,
+            lessonIconText: "𑄷-𑄿",
+            headingText: AppLocalizations.of(context)!.consonant,
+            subHeadingText: AppLocalizations.of(context)!.consonantChakma,
+            textColor: AppColors.secondaryDarkDark,
+            height: 0.16,
+            bgImage: AppImages.consonantImage,
+            onTap: () {
+              Navigator.pop(context); // Close the dialog
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const LessonScreen(
+                            selectedLessonType: LessonType.consonant1,
+                          )));
+              Provider.of<LessonProvider>(context, listen: false).resetLesson();
+            },
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          LessonButton(
+            bgColor: AppColors.secondaryLight,
+            lessonIconText: "𑄏-𑄖",
+            headingText: AppLocalizations.of(context)!.consonant,
+            subHeadingText: AppLocalizations.of(context)!.consonantChakma,
+            textColor: AppColors.secondaryDarkDark,
+            height: 0.16,
+            bgImage: AppImages.consonantImage,
+            onTap: () {
+              Navigator.pop(context); // Close the dialog
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const LessonScreen(
+                            selectedLessonType: LessonType.consonant2,
+                          )));
+              Provider.of<LessonProvider>(context, listen: false).resetLesson();
+            },
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          LessonButton(
+            bgColor: AppColors.secondaryLight,
+            lessonIconText: "𑄗-𑄞",
+            headingText: AppLocalizations.of(context)!.consonant,
+            subHeadingText: AppLocalizations.of(context)!.consonantChakma,
+            textColor: AppColors.secondaryDarkDark,
+            height: 0.16,
+            bgImage: AppImages.consonantImage,
+            onTap: () {
+              Navigator.pop(context); // Close the dialog
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const LessonScreen(
+                            selectedLessonType: LessonType.consonant3,
+                          )));
+              Provider.of<LessonProvider>(context, listen: false).resetLesson();
+            },
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          LessonButton(
+            bgColor: AppColors.secondaryLight,
+            lessonIconText: "𑄟-𑄦",
+            headingText: AppLocalizations.of(context)!.consonant,
+            subHeadingText: AppLocalizations.of(context)!.consonantChakma,
+            textColor: AppColors.secondaryDarkDark,
+            height: 0.16,
+            bgImage: AppImages.consonantImage,
+            onTap: () {
+              Navigator.pop(context); // Close the dialog
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const LessonScreen(
+                            selectedLessonType: LessonType.consonant3,
+                          )));
+              Provider.of<LessonProvider>(context, listen: false).resetLesson();
+            },
+          ),
+        ],
+      );
+    },
+  );
 }

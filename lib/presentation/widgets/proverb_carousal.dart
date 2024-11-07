@@ -1,4 +1,4 @@
-import 'package:changma_bhach/presentation/styles/text_styles.dart';
+import 'package:changma_bhach/presentation/styles/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -54,15 +54,15 @@ class ProverbCarousal extends StatelessWidget {
         scrollDirection: Axis.vertical,
       ),
       items: proverbs.map(
-        (i) {
+        (item) {
           return Builder(
             builder: (BuildContext context) {
               return SizedBox(
                 width: MediaQuery.of(context).size.width,
                 child: Text(
-                  i,
-                  style: TextStyles.headingText.copyWith(
-                      fontWeight: FontWeight.normal, fontFamily: "Roboto"),
+                  item,
+                  style:
+                      const TextStyle(color: AppColors.primary, fontSize: 18),
                 ),
               );
             },

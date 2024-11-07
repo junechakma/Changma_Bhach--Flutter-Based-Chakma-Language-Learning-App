@@ -1,5 +1,4 @@
 import 'package:changma_bhach/presentation/styles/app_colors.dart';
-import 'package:changma_bhach/presentation/styles/app_images.dart';
 import 'package:changma_bhach/presentation/styles/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -20,7 +19,7 @@ class LessonButton extends StatelessWidget {
       required this.headingText,
       required this.subHeadingText,
       required this.onTap,
-      required this.lessonIconText,
+      this.lessonIconText = "𑄇-𑄎",
       required this.height,
       required this.textColor,
       required this.bgImage});
@@ -46,27 +45,21 @@ class LessonButton extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            // Row(
-            //   mainAxisAlignment: MainAxisAlignment.center,
-            //   children: [
-            //     Text(lessonIconText,
-            //         style: const TextStyle(
-            //             fontSize: 40,
-            //             fontWeight: FontWeight.bold,
-            //             color: Colors.white)),
-            //   ],
-            // ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(headingText,
-                    style: TextStyles.headingText.copyWith(color: textColor)),
+                Row(
+                  children: [
+                    Text("$headingText $lessonIconText",
+                        style:
+                            TextStyles.headingText.copyWith(color: textColor)),
+                  ],
+                ),
                 Text(subHeadingText,
                     style:
                         TextStyles.subHeadingText.copyWith(color: textColor)),
               ],
             ),
-
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
