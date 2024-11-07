@@ -1,5 +1,8 @@
+import 'package:changma_bhach/presentation/styles/app_colors.dart';
+import 'package:changma_bhach/presentation/styles/app_images.dart';
 import 'package:changma_bhach/presentation/styles/text_styles.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class LessonButton extends StatelessWidget {
   final Color bgColor;
@@ -7,6 +10,9 @@ class LessonButton extends StatelessWidget {
   final String subHeadingText;
   final VoidCallback onTap;
   final String lessonIconText;
+  final double height;
+  final Color textColor;
+  final String bgImage;
 
   const LessonButton(
       {super.key,
@@ -14,7 +20,10 @@ class LessonButton extends StatelessWidget {
       required this.headingText,
       required this.subHeadingText,
       required this.onTap,
-      required this.lessonIconText});
+      required this.lessonIconText,
+      required this.height,
+      required this.textColor,
+      required this.bgImage});
 
   @override
   Widget build(BuildContext context) {
@@ -22,35 +31,60 @@ class LessonButton extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: Container(
-        width: cardWidth.width * .48,
+        width: cardWidth.width * .42,
+        height: cardWidth.height * height,
         padding: const EdgeInsets.all(20),
-        margin: const EdgeInsets.only(right: 10),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(20),
           color: bgColor,
+          image: DecorationImage(
+            image: AssetImage(bgImage),
+            fit: BoxFit.cover,
+          ),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const SizedBox(height: 10),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+            // Row(
+            //   mainAxisAlignment: MainAxisAlignment.center,
+            //   children: [
+            //     Text(lessonIconText,
+            //         style: const TextStyle(
+            //             fontSize: 40,
+            //             fontWeight: FontWeight.bold,
+            //             color: Colors.white)),
+            //   ],
+            // ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(lessonIconText,
-                    style: const TextStyle(
-                        fontSize: 40,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white)),
+                Text(headingText,
+                    style: TextStyles.headingText.copyWith(color: textColor)),
+                Text(subHeadingText,
+                    style:
+                        TextStyles.subHeadingText.copyWith(color: textColor)),
               ],
             ),
-            const SizedBox(height: 20),
+
             Row(
+              mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                Text(headingText, style: TextStyles.headingText),
-                Text("($lessonIconText) ", style: TextStyles.headingText),
+                InkWell(
+                  onTap: onTap,
+                  child: Container(
+                      padding: const EdgeInsets.all(10),
+                      decoration: BoxDecoration(
+                          color: AppColors.backgroundColor,
+                          borderRadius: BorderRadius.circular(10)),
+                      child: FaIcon(
+                        FontAwesomeIcons.play,
+                        color: textColor,
+                        size: 16,
+                      )),
+                )
               ],
-            ),
-            Text(subHeadingText, style: TextStyles.subHeadingText),
+            )
           ],
         ),
       ),
