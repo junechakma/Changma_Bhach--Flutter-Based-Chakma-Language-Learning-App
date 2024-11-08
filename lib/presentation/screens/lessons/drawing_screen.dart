@@ -163,9 +163,9 @@ class DrawingScreenState extends State<DrawingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.bgWhite,
+      backgroundColor: AppColors.backgroundColor,
       appBar: AppBar(
-        backgroundColor: AppColors.bgWhite,
+        backgroundColor: AppColors.backgroundColor,
         title: Text(
           AppLocalizations.of(context)!.draw_bellow,
           style: TextStyles.lessonText.copyWith(fontSize: 22),

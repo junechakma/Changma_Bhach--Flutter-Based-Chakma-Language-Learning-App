@@ -62,7 +62,7 @@ class ProverbCarousal extends StatelessWidget {
                 child: Text(
                   item,
                   style:
-                      const TextStyle(color: AppColors.primary, fontSize: 18),
+                      const TextStyle(color: AppColors.darkLight, fontSize: 18),
                 ),
               );
             },

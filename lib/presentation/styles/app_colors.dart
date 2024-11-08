@@ -9,12 +9,13 @@ class AppColors {
   static const Color lessonBg = Color(0xFFF9F9F9);
   static const Color lightBlue = Color(0xFF8093B5);
 
-  static const Color backgroundColor = Color(0xFFfefefd);
+  static const Color backgroundColor = Color(0xFFEEEDEC);
   static const Color dark = Color(0xFF171710);
+  static const Color darkLight = Color.fromARGB(255, 116, 116, 116);
   static const Color primary = Color(0xFF7CA7BB);
 
   static const Color secondary = Color(0xFF8D7CC5);
-  static const Color secondaryLight = Color(0xFFC5DEFA);
+  static const Color secondaryLight = Color(0xFFFCFBF9);
   static const Color secondaryDark = Color(0xFFAACAEE);
   static const Color secondaryDarkDark = Color(0xFF113C6C);
 

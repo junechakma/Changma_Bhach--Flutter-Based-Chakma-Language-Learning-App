@@ -64,9 +64,6 @@
     "@bottomBarReport": {
         "description": "Report label for bottom navigation bar"
     },
-
-
-    
     "confirm_exit_title": "প্রস্থান নিশ্চিত করুন",
     "@confirm_exit_title": {
         "description": "Title for the confirmation dialog when exiting the app"
@@ -83,58 +80,64 @@
     "@yes_button": {
         "description": "Text for the yes button in the confirmation dialog"
     },
-
-
     "draw_button": "আঁকুন",
     "@draw_button": {
         "description": "Text for the draw button in the Lesson Page"
     },
-
-    "draw_bellow":"নিচে অক্ষরটি আঁকুন",
+    "draw_bellow": "নিচে অক্ষরটি আঁকুন",
     "@draw_bellow": {
-      "description": "Title for the in the Draw Page"
+        "description": "Title for the in the Draw Page"
     },
-
     "clear_button": "মুছুন",
     "@clear_button": {
         "description": "Text for the clear canvas in the Drawing Screen"
     },
-
     "prediction_button": "যাচাই করুন",
     "@prediction_button": {
         "description": "Text for the prediction in the Drawing Screen"
     },
-
-    "error_drawing_message":"ভুল অক্ষর, আবার চেষ্টা করুন!",
+    "error_drawing_message": "ভুল অক্ষর, আবার চেষ্টা করুন!",
     "@error_drawing_message": {
         "description": "Error message for the prediction in the Drawing Screen"
     },
-
     "congratulation_message": "অভিনন্দন!",
-    "@congratulation_message":{
+    "@congratulation_message": {
         "description": "Congratulations Message for the prediction in the Drawing Screen"
     },
-
-
     "congratulation_alert_message": "এরপর কি করতে চাও?",
-    "@congratulation_alert_message":{
+    "@congratulation_alert_message": {
         "description": "Congratulations Subtext for the prediction in the Drawing Screen"
     },
-
-    "congratulation_alert_result_button":"ফলাফল",
-    "@congratulation_alert_result_button":{
-         "description": "Congratulations dialog box result button text"
+    "congratulation_alert_result_button": "ফলাফল",
+    "@congratulation_alert_result_button": {
+        "description": "Congratulations dialog box result button text"
     },
-
-    "congratulation_alert_restart_button":"পুনরায় আঁকুন",
-    "@congratulation_alert_restart_button":{
+    "congratulation_alert_restart_button": "পুনরায় আঁকুন",
+    "@congratulation_alert_restart_button": {
         "description": "Congratulations dialog box restart button text"
     },
-    
-    "congratulation_alert_next_button":"পরের অক্ষর",
-    "@congratulation_alert_next_button":{
+    "congratulation_alert_next_button": "পরের অক্ষর",
+    "@congratulation_alert_next_button": {
         "description": "Congratulations dialog box next button text"
     },
+
+    "score_text1":"আপনি",
+    "@score_text1":{
+        "description": "Score text 1st part"
+    },
+
+    "score_text2":"টি বাঁশ কোড়ল (বাচ্চুরি) পেয়েছেন!",
+    "@score_text2":{
+        "description": "Score text 2nd part"
+    },
+
+
+    "bamboo_shoots_text": "বাঁশ কোড়ল মূলত বাঁশের গোড়ার কচি অংশকে বোঝায় যা সবজি হিসেবে খাওয়া যায়। বাঁশ কোড়ল চাকমাদের কাছে বাচ্ছুরি, মারমাদের কাছে মহ্‌ই, আর ত্রিপুরাদের কাছে মেওয়া নামে পরিচিত। এই সবজিটি বিশেষ করে বর্ষাকালে দেখা যায়। তবে সব বাঁশের কোড়ল খাওয়া যায় না। যেগুলো খাওয়া যায়, তার মধ্যে মুলি বাঁশ, ডলু বাঁশ, মিতিংগ্যা বাঁশ, ফারুয়া বাঁশ, বাজ্জে বাঁশ, ও কালিছুরি জাত বেশ সুস্বাদু।",
+    "@bamboo_shoots_text": {
+        "description": "Bamboo Shoot Description"
+    },
+
+
 
 
     "proverbTitle": "প্রবাদ",

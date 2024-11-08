@@ -159,6 +159,21 @@
         "description": "Congratulations dialog box next button text"
     },
 
+
+    "score_text1":"You have earned",
+    "@score_text1":{
+        "description": "Score text 1st part"
+    },
+
+    "score_text2":"Bamboo Shoots (Bachchuri)",
+    "@score_text2":{
+        "description": "Score text 2nd part"
+    },
+
+    "bamboo_shoots_text": "Bamboo shoot basically refers to the young part of the bamboo root which can be eaten as a vegetable. The bamboo cord is known as Bachchuri to the Chakmas, Mohi to the Marmads, and Mewa to the Tripuras. This vegetable is especially seen during the monsoon season. But not all bamboo shoots can be eaten. Among the edible ones, Muli bamboo, Dolu bamboo, Mitingya bamboo, Farua bamboo, Bajje bamboo, and Kalichuri varieties are very tasty.",
+    "@bamboo_shoots_text": {
+        "description": "Bamboo Shoot Description"
+    },
   
   "proverb1": "Agha ele baghore dor nei, pada ele rajar laj nei.",
   "@proverb1": {

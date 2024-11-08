@@ -13,7 +13,7 @@ class TextStyles {
 
   static const TextStyle scoreCounter = TextStyle(
     fontWeight: FontWeight.w500,
-    fontSize: 40,
+    fontSize: 36,
     color: AppColors.dark,
   );
 

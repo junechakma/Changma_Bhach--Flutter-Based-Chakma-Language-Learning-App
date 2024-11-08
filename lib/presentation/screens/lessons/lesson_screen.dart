@@ -42,9 +42,9 @@ class _LessonScreenState extends State<LessonScreen> {
         showExitAlert(context);
       },
       child: Scaffold(
-        backgroundColor: AppColors.bgWhite,
+        backgroundColor: AppColors.backgroundColor,
         appBar: AppBar(
-          backgroundColor: AppColors.bgWhite,
+          backgroundColor: AppColors.backgroundColor,
           title: Text(
             appBarTitle == "vowel"
                 ? AppLocalizations.of(context)!.vowel
@@ -166,9 +166,8 @@ class _LessonScreenState extends State<LessonScreen> {
               ),
               LinearProgressIndicator(
                 value: lessonProvider.lessonProgress,
-                valueColor:
-                    const AlwaysStoppedAnimation(AppColors.yellowCrayola),
-                backgroundColor: AppColors.darkBlue,
+                valueColor: const AlwaysStoppedAnimation(AppColors.primary),
+                backgroundColor: AppColors.dark,
                 borderRadius: BorderRadius.circular(8),
                 minHeight: 10,
               ),

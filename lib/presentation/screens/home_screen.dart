@@ -169,7 +169,7 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(
-                height: 40,
+                height: 60,
               ),
               Text(
                 AppLocalizations.of(context)!.proverbTitle,
@@ -191,7 +191,7 @@ void showConsonantDialog(BuildContext context) {
     builder: (BuildContext context) {
       return SimpleDialog(
         backgroundColor: AppColors.backgroundColor,
-        contentPadding: const EdgeInsets.all(40),
+        contentPadding: const EdgeInsets.all(20),
         shadowColor: AppColors.secondary,
         children: [
           LessonButton(
@@ -201,7 +201,7 @@ void showConsonantDialog(BuildContext context) {
             subHeadingText: AppLocalizations.of(context)!.consonantChakma,
             textColor: AppColors.secondaryDarkDark,
             height: 0.16,
-            bgImage: AppImages.consonantImage,
+            bgImage: AppImages.consonantImage1,
             onTap: () {
               Navigator.pop(context); // Close the dialog
               Navigator.push(
@@ -217,13 +217,13 @@ void showConsonantDialog(BuildContext context) {
             height: 20,
           ),
           LessonButton(
-            bgColor: AppColors.secondaryLight,
+            bgColor: AppColors.tertiaryLight,
             lessonIconText: "𑄏-𑄖",
             headingText: AppLocalizations.of(context)!.consonant,
             subHeadingText: AppLocalizations.of(context)!.consonantChakma,
-            textColor: AppColors.secondaryDarkDark,
+            textColor: AppColors.tertiaryDarkDark,
             height: 0.16,
-            bgImage: AppImages.consonantImage,
+            bgImage: AppImages.consonantImage2,
             onTap: () {
               Navigator.pop(context); // Close the dialog
               Navigator.push(
@@ -239,13 +239,13 @@ void showConsonantDialog(BuildContext context) {
             height: 20,
           ),
           LessonButton(
-            bgColor: AppColors.secondaryLight,
+            bgColor: AppColors.quaternaryLight,
             lessonIconText: "𑄗-𑄞",
             headingText: AppLocalizations.of(context)!.consonant,
             subHeadingText: AppLocalizations.of(context)!.consonantChakma,
-            textColor: AppColors.secondaryDarkDark,
+            textColor: AppColors.quaternaryDarkDark,
             height: 0.16,
-            bgImage: AppImages.consonantImage,
+            bgImage: AppImages.consonantImage3,
             onTap: () {
               Navigator.pop(context); // Close the dialog
               Navigator.push(
@@ -261,13 +261,13 @@ void showConsonantDialog(BuildContext context) {
             height: 20,
           ),
           LessonButton(
-            bgColor: AppColors.secondaryLight,
+            bgColor: AppColors.tertiaryLight,
             lessonIconText: "𑄟-𑄦",
             headingText: AppLocalizations.of(context)!.consonant,
             subHeadingText: AppLocalizations.of(context)!.consonantChakma,
-            textColor: AppColors.secondaryDarkDark,
+            textColor: AppColors.tertiaryDarkDark,
             height: 0.16,
-            bgImage: AppImages.consonantImage,
+            bgImage: AppImages.consonantImage4,
             onTap: () {
               Navigator.pop(context); // Close the dialog
               Navigator.push(

@@ -85,8 +85,13 @@ flutter:
     - assets/images/congratulations.png
     - assets/images/cards/vowel.png
     - assets/images/cards/consonant.png
+    - assets/images/cards/consonant1.png
+    - assets/images/cards/consonant2.png
+    - assets/images/cards/consonant3.png
+    - assets/images/cards/consonant4.png
     - assets/images/cards/number.png
     - assets/images/cards/diacritic.png
+    - assets/images/cards/bambooshoots.png
     - assets/models/character_recognition_model.tflite
     - assets/models/chakma_character_recognition_model.tflite
   #   - images/a_dot_ham.jpeg
