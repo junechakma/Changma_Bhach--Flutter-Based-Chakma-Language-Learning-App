@@ -12,6 +12,6 @@ class AppImages {
   static const String diacriticImage = "assets/images/cards/diacritic.png";
   static const String numberImage = "assets/images/cards/number.png";
   static const String bambooshoots = "assets/images/cards/bambooshoots.png";
-  static const String snackbarImage = "assets/images/snackbar-image1.png";
+  static const String snackbarImage = "assets/images/snackbar1.png";
   static const String congratulations = "assets/images/congratulations.png";
 }

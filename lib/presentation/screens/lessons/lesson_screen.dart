@@ -5,6 +5,7 @@ import 'package:changma_bhach/providers/lesson_provider.dart';
 import 'package:changma_bhach/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 
 class LessonScreen extends StatefulWidget {
@@ -92,7 +93,8 @@ class _LessonScreenState extends State<LessonScreen> {
                       ),
                       Text(
                         lessonProvider.content["pronunciation"],
-                        style: TextStyles.subHeadingText.copyWith(fontSize: 26),
+                        style: TextStyles.subHeadingText
+                            .copyWith(fontSize: 26, color: AppColors.primary),
                       ),
                       const SizedBox(
                         height: 50,
@@ -102,28 +104,26 @@ class _LessonScreenState extends State<LessonScreen> {
                         children: [
                           Text(
                             "শব্দঃ",
-                            style: TextStyles.subHeadingText
-                                .copyWith(fontSize: 18),
+                            style: TextStyles.subHeadingText.copyWith(
+                                fontSize: 18, color: AppColors.primary),
                           ),
-                          Text(
+                          const Text(
                             " ",
-                            style: TextStyles.subHeadingText
-                                .copyWith(fontSize: 18),
                           ),
                           Text(
                             lessonProvider.content["word"],
-                            style: TextStyles.subHeadingText
-                                .copyWith(fontSize: 18),
+                            style: TextStyles.subHeadingText.copyWith(
+                                fontSize: 18, color: AppColors.darkLight),
                           ),
                           Text(
                             " >> ",
-                            style: TextStyles.subHeadingText
-                                .copyWith(fontSize: 18),
+                            style: TextStyles.subHeadingText.copyWith(
+                                fontSize: 18, color: AppColors.darkLight),
                           ),
                           Text(
                             lessonProvider.content["chakmaWord"],
-                            style: TextStyles.subHeadingText
-                                .copyWith(fontSize: 18),
+                            style: TextStyles.subHeadingText.copyWith(
+                                fontSize: 18, color: AppColors.darkLight),
                           ),
                         ],
                       )
@@ -136,23 +136,28 @@ class _LessonScreenState extends State<LessonScreen> {
               ),
               Text(
                 lessonProvider.content["rules"],
-                style: TextStyles.lessonText,
+                style:
+                    TextStyles.lessonText.copyWith(color: AppColors.darkLight),
               ),
               const SizedBox(
                 height: 50,
               ),
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  const Text(""),
                   ElevatedButton(
                     onPressed: () {
                       Navigator.pushNamed(context, AppRoutes.drawingScreen);
                     },
+                    style: ButtonStyle(
+                        foregroundColor:
+                            WidgetStateProperty.all(AppColors.backgroundColor),
+                        backgroundColor:
+                            WidgetStateProperty.all(AppColors.primary)),
                     child: Row(
                       children: [
                         Text(AppLocalizations.of(context)!.draw_button),
-                        const Icon(Icons.brush)
+                        const FaIcon(FontAwesomeIcons.paintbrush)
                       ], // Removed `Flexible`
                     ),
                   ),
@@ -161,13 +166,10 @@ class _LessonScreenState extends State<LessonScreen> {
               const SizedBox(
                 height: 20,
               ),
-              const SizedBox(
-                height: 20,
-              ),
               LinearProgressIndicator(
                 value: lessonProvider.lessonProgress,
-                valueColor: const AlwaysStoppedAnimation(AppColors.primary),
-                backgroundColor: AppColors.dark,
+                valueColor: const AlwaysStoppedAnimation(AppColors.quinaryDark),
+                backgroundColor: AppColors.quinaryLight,
                 borderRadius: BorderRadius.circular(8),
                 minHeight: 10,
               ),

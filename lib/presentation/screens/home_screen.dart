@@ -143,12 +143,12 @@ class HomeScreen extends StatelessWidget {
                           height: 20,
                         ),
                         LessonButton(
-                          bgColor: AppColors.tertiaryLight,
+                          bgColor: AppColors.quinaryLight,
                           lessonIconText: "",
                           headingText: AppLocalizations.of(context)!.numerals,
                           subHeadingText:
                               AppLocalizations.of(context)!.numeralsChakma,
-                          textColor: AppColors.tertiaryDarkDark,
+                          textColor: AppColors.quinaryDarkDark,
                           height: 0.18,
                           bgImage: AppImages.numberImage,
                           onTap: () {

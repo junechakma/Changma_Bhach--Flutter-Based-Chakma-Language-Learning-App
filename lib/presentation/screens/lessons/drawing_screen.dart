@@ -5,6 +5,7 @@ import 'package:changma_bhach/presentation/screens/lessons/lesson_screen.dart';
 import 'package:changma_bhach/presentation/styles/app_colors.dart';
 import 'package:changma_bhach/presentation/styles/app_images.dart';
 import 'package:changma_bhach/presentation/styles/text_styles.dart';
+import 'package:changma_bhach/presentation/widgets/lessons/congratulations_dialouge.dart';
 import 'package:changma_bhach/presentation/widgets/score_counter.dart';
 import 'package:changma_bhach/providers/lesson_provider.dart';
 import 'package:changma_bhach/routes/app_routes.dart';
@@ -78,81 +79,101 @@ class DrawingScreenState extends State<DrawingScreen> {
   void _showErrorDialog(BuildContext context) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        backgroundColor: const Color.fromARGB(41, 255, 0, 25),
-        content: Column(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        content: Stack(
           children: [
-            Image.asset(
-              AppImages.snackbarImage,
-              width: 200,
-              height: 200,
+            Padding(
+              padding: const EdgeInsets.only(top: 140),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: AppColors.danger,
+                  borderRadius: BorderRadius.circular(4),
+                ),
+                padding: const EdgeInsets.all(16),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Text(
+                        AppLocalizations.of(context)!.error_drawing_message,
+                        style: TextStyles.headingText
+                            .copyWith(color: Colors.white),
+                      ),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                      },
+                      child: const Text(
+                        'Dismiss',
+                        style: TextStyle(color: AppColors.dangerRed),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ),
-            Text(
-              AppLocalizations.of(context)!.error_drawing_message,
-              style: TextStyles.headingText.copyWith(color: Colors.white),
-            )
+            Positioned(
+              top: 0,
+              left: 0,
+              child: Image.asset(
+                AppImages.snackbarImage,
+                width: 150,
+                height: 200,
+              ),
+            ),
           ],
         ),
+        duration: const Duration(seconds: 4),
+        behavior: SnackBarBehavior.floating,
       ),
     );
   }
 
   void _showCongratulationsDialog() {
     final lessonProvider = Provider.of<LessonProvider>(context, listen: false);
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text(AppLocalizations.of(context)!.congratulation_message),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Image.asset(
-                AppImages.congratulations,
-                width: 200,
-                height: 200,
-              ),
-              const SizedBox(height: 20),
-              Text(AppLocalizations.of(context)!.congratulation_alert_message),
-            ],
-          ),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop(); // Close the dialog
-                _clearCanvas(); // Optionally clear the canvas
-              },
-              child: Text(AppLocalizations.of(context)!
-                  .congratulation_alert_restart_button),
-            ),
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop(); // Close the dialog
 
-                if (lessonProvider.lastLetter) {
-                  Navigator.pushReplacementNamed(
-                      context, AppRoutes.resultScreen);
-                } else {
-                  lessonProvider.nextLetter();
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => LessonScreen(
-                        selectedLessonType: lessonProvider.currentLessonType,
-                      ),
-                    ),
-                  );
-                }
-                // Navigate to next lesson
-              },
-              child: Text(lessonProvider.lastLetter
-                  ? AppLocalizations.of(context)!
-                      .congratulation_alert_result_button
-                  : AppLocalizations.of(context)!
-                      .congratulation_alert_next_button),
-            ),
-          ],
-        );
-      },
+    CongratulationsDialog.show(
+      context: context,
+      title: AppLocalizations.of(context)!.congratulation_message,
+      message: AppLocalizations.of(context)!.congratulation_alert_message,
+      imagePath: AppImages.congratulations,
+      primaryColor: AppColors.primary, // Optional: customize the primary color
+      actions: [
+        // "Restart" button
+        CongratulationsAction(
+          label:
+              AppLocalizations.of(context)!.congratulation_alert_restart_button,
+          onPressed: () {
+            Navigator.of(context).pop();
+            _clearCanvas();
+          },
+        ),
+        // "Next" or "Result" button depending on the last letter
+        CongratulationsAction(
+          label: lessonProvider.lastLetter
+              ? AppLocalizations.of(context)!.congratulation_alert_result_button
+              : AppLocalizations.of(context)!.congratulation_alert_next_button,
+          onPressed: () {
+            Navigator.of(context).pop();
+
+            if (lessonProvider.lastLetter) {
+              Navigator.pushReplacementNamed(context, AppRoutes.resultScreen);
+            } else {
+              lessonProvider.nextLetter();
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => LessonScreen(
+                    selectedLessonType: lessonProvider.currentLessonType,
+                  ),
+                ),
+              );
+            }
+          },
+          isPrimary: true,
+        ),
+      ],
     );
   }
 
@@ -162,6 +183,8 @@ class DrawingScreenState extends State<DrawingScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final lessonProvider = Provider.of<LessonProvider>(context);
+
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
       appBar: AppBar(
@@ -182,6 +205,7 @@ class DrawingScreenState extends State<DrawingScreen> {
         margin: const EdgeInsets.only(top: 40),
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Center(
               child: Container(
@@ -210,6 +234,10 @@ class DrawingScreenState extends State<DrawingScreen> {
               children: [
                 ElevatedButton(
                   onPressed: _clearCanvas,
+                  style: ButtonStyle(
+                    foregroundColor: WidgetStateProperty.all(AppColors.dark),
+                    backgroundColor: WidgetStateProperty.all(Colors.grey[300]),
+                  ),
                   child: Row(
                     children: [
                       Text(AppLocalizations.of(context)!.clear_button),
@@ -219,14 +247,35 @@ class DrawingScreenState extends State<DrawingScreen> {
                 ),
                 ElevatedButton(
                   onPressed: _handlePrediction,
+                  style: ButtonStyle(
+                      foregroundColor:
+                          WidgetStateProperty.all(AppColors.backgroundColor),
+                      backgroundColor:
+                          WidgetStateProperty.all(AppColors.primary)),
                   child: Row(
                     children: [
                       Text(AppLocalizations.of(context)!.prediction_button),
+                      const SizedBox(
+                        width: 4,
+                      ),
                       const Icon(Icons.auto_awesome)
                     ],
                   ),
                 ),
               ],
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            LinearProgressIndicator(
+              value: lessonProvider.lessonProgress,
+              valueColor: const AlwaysStoppedAnimation(AppColors.quinaryDark),
+              backgroundColor: AppColors.quinaryLight,
+              borderRadius: BorderRadius.circular(8),
+              minHeight: 10,
+            ),
+            const SizedBox(
+              height: 10,
             ),
           ],
         ),

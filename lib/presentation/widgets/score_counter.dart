@@ -23,6 +23,7 @@ class ScoreCounter extends StatelessWidget {
         final formattedScore = numberFormatter.format(score);
         _showScoreDialog(context, formattedScore);
       },
+      borderRadius: BorderRadius.circular(20),
       child: Row(
         children: [
           Consumer<ScoreProvider>(builder: (context, scoreCounter, child) {

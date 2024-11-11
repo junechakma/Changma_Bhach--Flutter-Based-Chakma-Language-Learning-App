@@ -2,6 +2,7 @@ import 'package:changma_bhach/presentation/styles/app_colors.dart';
 import 'package:changma_bhach/presentation/styles/text_styles.dart';
 
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:changma_bhach/providers/lesson_provider.dart';
 import 'package:changma_bhach/routes/app_routes.dart';
@@ -28,21 +29,25 @@ class ResultScreen extends StatelessWidget {
           title: const Text('Lesson Result'),
           centerTitle: true,
           automaticallyImplyLeading: false,
+          backgroundColor: AppColors.backgroundColor,
         ),
         body: Container(
           padding: const EdgeInsets.all(20),
-          decoration: const BoxDecoration(color: AppColors.bgWhite),
+          decoration: const BoxDecoration(color: AppColors.backgroundColor),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               // Overall Performance Section
-              _buildPerformanceHeader(lessonProvider),
-
-              const SizedBox(height: 20),
+              Column(
+                children: [
+                  _buildPerformanceHeader(lessonProvider),
+                  const SizedBox(height: 20),
+                  _buildScoreBreakdown(lessonProvider),
+                ],
+              ),
 
               // Detailed Score Breakdown
-              _buildScoreBreakdown(lessonProvider),
 
               const SizedBox(height: 20),
 
@@ -70,8 +75,7 @@ class ResultScreen extends StatelessWidget {
           ' Performance ',
           style: TextStyles.categoryHeading,
         ),
-
-        const SizedBox(height: 10),
+        const SizedBox(height: 20),
         // Text(
         //   '$performancePercentage%',
         //   style: const TextStyle(
@@ -80,9 +84,8 @@ class ResultScreen extends StatelessWidget {
         //     color: Colors.white,
         //   ),
         // ),
-
         CircularPercentIndicator(
-          radius: 80.0,
+          radius: 90.0,
           lineWidth: 20.0,
           animation: true,
           percent: double.parse(performancePercentage) / 100,
@@ -90,14 +93,13 @@ class ResultScreen extends StatelessWidget {
             "$performancePercentage %",
             style: const TextStyle(
                 fontWeight: FontWeight.bold,
-                fontSize: 20.0,
+                fontSize: 32.0,
                 color: Colors.black),
           ),
           circularStrokeCap: CircularStrokeCap.round,
           progressColor:
               _getPerformanceColor(double.parse(performancePercentage)),
         ),
-
         const SizedBox(height: 20),
       ],
     );
@@ -106,24 +108,32 @@ class ResultScreen extends StatelessWidget {
   Widget _buildScoreBreakdown(LessonProvider lessonProvider) {
     return Container(
       padding: const EdgeInsets.all(16.0),
-      child: Column(children: [
-        const Text(
-          'You Have Total ',
-          style: TextStyles.categoryHeading,
+      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text(
+              'You have total  ',
+              style: TextStyles.categoryHeading,
+            ),
+            Text(
+              '${lessonProvider.lessonCorrectAnswer + lessonProvider.lessonWrongAnswer} atempts ',
+              style:
+                  TextStyles.categoryHeading.copyWith(color: AppColors.danger),
+            ),
+          ],
         ),
-        Text(
-          '${lessonProvider.lessonCorrectAnswer + lessonProvider.lessonWrongAnswer} Atempts ',
-          style: TextStyles.categoryHeading,
-        ),
-        const SizedBox(height: 20),
+        const SizedBox(height: 30),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             _buildScoreRow(
-                'Correct Answers', lessonProvider.lessonCorrectAnswer,
-                color: Colors.green),
+              'Correct Answers',
+              lessonProvider.lessonCorrectAnswer,
+              color: AppColors.primary,
+            ),
             _buildScoreRow('Wrong Answers', lessonProvider.lessonWrongAnswer,
-                color: Colors.blue),
+                color: AppColors.dangerRed),
           ],
         ),
       ]),
@@ -133,9 +143,12 @@ class ResultScreen extends StatelessWidget {
   Widget _buildScoreRow(String label, int value, {Color? color}) {
     return Container(
       padding: const EdgeInsets.all(12.0),
-      decoration:
-          BoxDecoration(borderRadius: BorderRadius.circular(10), color: color),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10),
+        color: color ?? Colors.grey,
+      ),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -148,12 +161,25 @@ class ResultScreen extends StatelessWidget {
                   color: Colors.white,
                 ),
               ),
-              const Icon(Icons.fork_right)
+              const SizedBox(
+                width: 40,
+              ),
+              FaIcon(
+                color == AppColors.primary
+                    ? FontAwesomeIcons.checkDouble
+                    : FontAwesomeIcons.xmark, // Corrected icon selection
+                color: AppColors.backgroundColor, // Adjust color if needed
+                size: 28, // Adjust icon size if too big/small
+              ),
             ],
           ),
+          const SizedBox(height: 4), // Add spacing between text and label
           Text(
             label,
-            style: TextStyles.subHeadingText.copyWith(color: Colors.white),
+            style: TextStyles.subHeadingText.copyWith(
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+            ),
           ),
         ],
       ),
@@ -162,40 +188,56 @@ class ResultScreen extends StatelessWidget {
 
   Widget _buildActionButtons(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      mainAxisAlignment: MainAxisAlignment.end,
       children: [
-        ElevatedButton(
-          style: ElevatedButton.styleFrom(
-            backgroundColor: AppColors.darkBlue,
-            foregroundColor: AppColors.mistyRose,
-          ),
-          onPressed: () {
-            // Navigate back to home
-            Navigator.pushReplacementNamed(context, AppRoutes.bottomNav);
-            Provider.of<LessonProvider>(context, listen: false).resetLesson();
-          },
-          child: const Text('Home'),
-        ),
         // ElevatedButton(
         //   onPressed: () {
         //     Navigator.pushReplacementNamed(context, AppRoutes.lessonScreen);
         //     Provider.of<LessonProvider>(context, listen: false).resetLesson();
         //   },
         //   style: ElevatedButton.styleFrom(
-        //     backgroundColor: AppColors.lightBlue,
-        //     foregroundColor: AppColors.bgWhite,
+        //     backgroundColor: Colors.grey[300],
+        //     foregroundColor: AppColors.dark,
         //   ),
-        //   child: const Text('Retry Lesson'),
+        //   child: const Row(
+        //     children: [
+        //       Text('Retry'),
+        //       SizedBox(
+        //         width: 10,
+        //       ),
+        //       FaIcon(FontAwesomeIcons.rotateRight)
+        //     ],
+        //   ),
         // ),
+        ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: AppColors.primary,
+            foregroundColor: AppColors.backgroundColor,
+          ),
+          onPressed: () {
+            // Navigate back to home
+            Navigator.pushReplacementNamed(context, AppRoutes.bottomNav);
+            Provider.of<LessonProvider>(context, listen: false).resetLesson();
+          },
+          child: const Row(
+            children: [
+              Text('Home'),
+              SizedBox(
+                width: 10,
+              ),
+              FaIcon(FontAwesomeIcons.house)
+            ],
+          ),
+        ),
       ],
     );
   }
 
   // Helper method to determine performance color based on percentage
   Color _getPerformanceColor(double percentage) {
-    if (percentage >= 80) return Colors.green;
-    if (percentage >= 50) return Colors.orange;
-    return Colors.red;
+    if (percentage >= 80) return AppColors.primary;
+    if (percentage >= 50) return AppColors.danger;
+    return AppColors.dangerRed;
   }
 }
 
