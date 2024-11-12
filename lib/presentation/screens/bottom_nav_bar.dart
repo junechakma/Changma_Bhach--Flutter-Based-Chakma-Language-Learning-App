@@ -58,11 +58,11 @@ class _BottomNavBarState extends State<BottomNavBar> {
                   Icons.translate_rounded,
                 ),
                 label: AppLocalizations.of(context)!.bottomBarTranslations),
-            BottomNavigationBarItem(
-                icon: const FaIcon(
-                  FontAwesomeIcons.squarePollHorizontal,
-                ),
-                label: AppLocalizations.of(context)!.bottomBarReport),
+            // BottomNavigationBarItem(
+            //     icon: const FaIcon(
+            //       FontAwesomeIcons.squarePollHorizontal,
+            //     ),
+            //     label: AppLocalizations.of(context)!.bottomBarReport),
           ],
         ),
       ),
