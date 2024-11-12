@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:http/http.dart' as http;
 import 'package:changma_bhach/presentation/styles/app_colors.dart';
 
@@ -16,6 +17,7 @@ class _TranslationScreenState extends State<TranslationScreen> {
   String? _primaryTranslation;
   List<String> _alternativeTranslations = [];
   bool _isBanglaToChakma = true;
+  bool _isLoading = false;
 
   Future<void> translateText(String inputText) async {
     const String apiUrl =
@@ -23,6 +25,10 @@ class _TranslationScreenState extends State<TranslationScreen> {
 
     // Encode the input text to handle special characters and spaces
     final encodedText = Uri.encodeComponent(inputText);
+
+    setState(() {
+      _isLoading = true; // Set loading to true when starting the request
+    });
 
     try {
       final response = await http.get(
@@ -34,7 +40,6 @@ class _TranslationScreenState extends State<TranslationScreen> {
         setState(() {
           _primaryTranslation =
               data['primary_translation'] ?? "Translation unavailable";
-          // Check if 'alternative_translations' is a list or a single string
           var altTranslations = data['alternative_translations'];
           if (altTranslations is String) {
             _alternativeTranslations = [altTranslations];
@@ -45,15 +50,13 @@ class _TranslationScreenState extends State<TranslationScreen> {
           }
         });
       } else {
-        setState(() {
-          _primaryTranslation = "Error: Could not retrieve translation";
-          _alternativeTranslations = [];
-        });
+        showSnackbar("Error: Could not retrieve translation. Try again later.");
       }
     } catch (error) {
+      showSnackbar("Error: ${error.toString()}. Try again later.");
+    } finally {
       setState(() {
-        _primaryTranslation = "Error: ${error.toString()}";
-        _alternativeTranslations = [];
+        _isLoading = false; // Stop loading when the response is received
       });
     }
   }
@@ -75,6 +78,12 @@ class _TranslationScreenState extends State<TranslationScreen> {
         );
       });
     }
+  }
+
+  void showSnackbar(String message) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text(message)),
+    );
   }
 
   @override
@@ -151,7 +160,7 @@ class _TranslationScreenState extends State<TranslationScreen> {
                 // Input Text Area with Clear Button
                 Container(
                   padding: const EdgeInsets.all(16),
-                  height: 250,
+                  height: 200,
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(8),
@@ -196,17 +205,41 @@ class _TranslationScreenState extends State<TranslationScreen> {
 
                 // Translate Button
                 ElevatedButton(
-                  onPressed: () {
-                    // Dismiss keyboard when translate button is pressed
-                    FocusScope.of(context).unfocus();
-                    final inputText = _controller.text.trim();
-                    if (inputText.isNotEmpty) {
-                      translateText(inputText);
-                    }
-                  },
-                  child: const Text("Translate"),
+                  onPressed: _isLoading
+                      ? null // Disable button if loading
+                      : () {
+                          // Dismiss keyboard when translate button is pressed
+                          FocusScope.of(context).unfocus();
+                          final inputText = _controller.text.trim();
+                          if (inputText.isNotEmpty) {
+                            translateText(inputText);
+                          }
+                        },
+                  style: ButtonStyle(
+                    foregroundColor:
+                        WidgetStateProperty.all(AppColors.backgroundColor),
+                    backgroundColor: WidgetStateProperty.all(AppColors.primary),
+                  ),
+                  child: SizedBox(
+                    width: 100,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        if (_isLoading) ...[
+                          const CircularProgressIndicator(
+                            color: Colors.white,
+                            strokeWidth: 4,
+                          ),
+                        ] else ...[
+                          const Text("Translate"),
+                          const SizedBox(width: 8),
+                          const FaIcon(FontAwesomeIcons.language),
+                        ],
+                      ],
+                    ),
+                  ),
                 ),
-                const SizedBox(height: 16),
+                const SizedBox(height: 40),
 
                 // Output Text Area with Primary and Alternative Translations
                 if (_primaryTranslation != null) ...[

@@ -1,4 +1,4 @@
-class Content {
+class ContentEN {
   static final List<Map<String, dynamic>> vowels = [
     {
       'letter': '𑄃',
