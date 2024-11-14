@@ -81,13 +81,14 @@ class HomeScreen extends StatelessWidget {
                       children: [
                         LessonButton(
                           bgColor: AppColors.tertiaryLight,
-                          lessonIconText: "",
                           headingText: AppLocalizations.of(context)!.vowel,
                           subHeadingText:
                               AppLocalizations.of(context)!.vowelChakma,
                           textColor: AppColors.tertiaryDarkDark,
                           height: 0.18,
                           bgImage: AppImages.vowelImage,
+                          isCompleted: Provider.of<LessonProvider>(context)
+                              .isLessonCompleted(LessonType.vowel),
                           onTap: () {
                             Navigator.push(
                               context,
@@ -106,13 +107,14 @@ class HomeScreen extends StatelessWidget {
                         ),
                         LessonButton(
                           bgColor: AppColors.quaternaryLight,
-                          lessonIconText: "",
                           headingText: AppLocalizations.of(context)!.diacritics,
                           subHeadingText:
                               AppLocalizations.of(context)!.diacriticsChakma,
                           textColor: AppColors.quaternaryDarkDark,
                           height: 0.2,
                           bgImage: AppImages.diacriticImage,
+                          isCompleted: Provider.of<LessonProvider>(context)
+                              .isLessonCompleted(LessonType.diacritics),
                           onTap: () {
                             Navigator.push(
                                 context,
@@ -134,7 +136,6 @@ class HomeScreen extends StatelessWidget {
                       children: [
                         LessonButton(
                           bgColor: AppColors.secondaryLight,
-                          lessonIconText: "",
                           headingText: AppLocalizations.of(context)!.consonant,
                           subHeadingText:
                               AppLocalizations.of(context)!.consonantChakma,
@@ -150,13 +151,14 @@ class HomeScreen extends StatelessWidget {
                         ),
                         LessonButton(
                           bgColor: AppColors.quinaryLight,
-                          lessonIconText: "",
                           headingText: AppLocalizations.of(context)!.numerals,
                           subHeadingText:
                               AppLocalizations.of(context)!.numeralsChakma,
                           textColor: AppColors.quinaryDarkDark,
                           height: 0.18,
                           bgImage: AppImages.numberImage,
+                          isCompleted: Provider.of<LessonProvider>(context)
+                              .isLessonCompleted(LessonType.numbers),
                           onTap: () {
                             Navigator.push(
                                 context,
@@ -208,6 +210,8 @@ void showConsonantDialog(BuildContext context) {
             textColor: AppColors.secondaryDarkDark,
             height: 0.16,
             bgImage: AppImages.consonantImage1,
+            isCompleted: Provider.of<LessonProvider>(context)
+                .isLessonCompleted(LessonType.consonant1),
             onTap: () {
               Navigator.pop(context); // Close the dialog
               Navigator.push(
@@ -230,6 +234,8 @@ void showConsonantDialog(BuildContext context) {
             textColor: AppColors.tertiaryDarkDark,
             height: 0.16,
             bgImage: AppImages.consonantImage2,
+            isCompleted: Provider.of<LessonProvider>(context)
+                .isLessonCompleted(LessonType.consonant2),
             onTap: () {
               Navigator.pop(context); // Close the dialog
               Navigator.push(
@@ -252,6 +258,8 @@ void showConsonantDialog(BuildContext context) {
             textColor: AppColors.quaternaryDarkDark,
             height: 0.16,
             bgImage: AppImages.consonantImage3,
+            isCompleted: Provider.of<LessonProvider>(context)
+                .isLessonCompleted(LessonType.consonant3),
             onTap: () {
               Navigator.pop(context); // Close the dialog
               Navigator.push(
@@ -274,6 +282,8 @@ void showConsonantDialog(BuildContext context) {
             textColor: AppColors.tertiaryDarkDark,
             height: 0.16,
             bgImage: AppImages.consonantImage4,
+            isCompleted: Provider.of<LessonProvider>(context)
+                .isLessonCompleted(LessonType.consonant4),
             onTap: () {
               Navigator.pop(context); // Close the dialog
               Navigator.push(

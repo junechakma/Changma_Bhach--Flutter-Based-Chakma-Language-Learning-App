@@ -2,6 +2,7 @@ import 'package:changma_bhach/data/content.dart';
 import 'package:changma_bhach/providers/score_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 enum LessonType { vowel, consonant1, consonant2, consonant3, consonant4, diacritics, numbers }
 
@@ -12,6 +13,29 @@ class LessonProvider extends ChangeNotifier {
   bool _isCorrectLetter = false;
   bool _lastLetter = false;
   String _lessonHeading = "vowel";
+  Set<LessonType> _completedLessons = {};
+  SharedPreferences? _prefs;
+
+  LessonProvider() {
+    _loadCompletedLessons();
+  }
+
+  Future<void> _loadCompletedLessons() async {
+    _prefs = await SharedPreferences.getInstance();
+    final completedLessons = _prefs?.getStringList('completed_lessons') ?? [];
+    _completedLessons = completedLessons
+        .map((e) => LessonType.values.firstWhere((type) => type.toString() == e))
+        .toSet();
+    notifyListeners();
+  }
+
+  Future<void> _saveCompletedLessons() async {
+    _prefs ??= await SharedPreferences.getInstance();
+    await _prefs?.setStringList(
+      'completed_lessons',
+      _completedLessons.map((type) => type.toString()).toList(),
+    );
+  }
 
   LessonType _currentLessonType = LessonType.vowel;
   List<Map<String, dynamic>> _selectedLesson = [];
@@ -32,6 +56,7 @@ class LessonProvider extends ChangeNotifier {
   int get lessonCorrectAnswer => _correctAnswers;
   LessonType get currentLessonType => _currentLessonType;
   String get lessonHeading => _lessonHeading;
+  bool isLessonCompleted(LessonType type) => _completedLessons.contains(type);
 
   void setlessonType(LessonType type) {
     _currentLessonType = type;
@@ -79,16 +104,6 @@ class LessonProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void resetLesson() {
-    _currentIndex = 0;
-    _wrongAnswers = 0;
-    _correctAnswers = 0;
-    _lastLetter = false;
-    _isCorrectLetter = false;
-    _lastLetter = false;
-    notifyListeners();
-  }
-
   void drawingValidation(BuildContext context, String letter) {
     if (_selectedLesson[currentIndex]["letter"] == letter) {
       _isCorrectLetter = true;
@@ -101,13 +116,24 @@ class LessonProvider extends ChangeNotifier {
 
       if (_currentIndex == _selectedLesson.length - 1) {
         _lastLetter = true;
+        _completedLessons.add(_currentLessonType);
+        _saveCompletedLessons(); // Save when lesson is completed
       }
       notifyListeners();
     } else {
       _isCorrectLetter = false;
       _wrongAnswers++;
-      notifyListeners(); // Can trigger rebuild
+      notifyListeners();
     }
+  }
+
+  void resetLesson() {
+    _currentIndex = 0;
+    _wrongAnswers = 0;
+    _correctAnswers = 0;
+    _lastLetter = false;
+    _isCorrectLetter = false;
+    notifyListeners();
   }
 
   void nextLetter() {

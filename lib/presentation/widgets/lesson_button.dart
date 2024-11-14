@@ -8,21 +8,22 @@ class LessonButton extends StatelessWidget {
   final String headingText;
   final String subHeadingText;
   final VoidCallback onTap;
-  final String lessonIconText;
   final double height;
   final Color textColor;
   final String bgImage;
+  final bool isCompleted;
 
-  const LessonButton(
-      {super.key,
-      required this.bgColor,
-      required this.headingText,
-      required this.subHeadingText,
-      required this.onTap,
-      this.lessonIconText = "𑄇-𑄎",
-      required this.height,
-      required this.textColor,
-      required this.bgImage});
+  const LessonButton({
+    super.key,
+    required this.bgColor,
+    required this.headingText,
+    required this.subHeadingText,
+    required this.onTap,
+    required this.height,
+    required this.textColor,
+    required this.bgImage,
+    this.isCompleted = false,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +35,7 @@ class LessonButton extends StatelessWidget {
         height: cardWidth.height * height,
         padding: const EdgeInsets.all(20),
         decoration: BoxDecoration(
+          border: (isCompleted) ? Border.all(color: AppColors.primary) : null,
           borderRadius: BorderRadius.circular(20),
           color: bgColor,
           image: DecorationImage(
@@ -48,12 +50,9 @@ class LessonButton extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Row(
-                  children: [
-                    Text("$headingText $lessonIconText",
-                        style:
-                            TextStyles.headingText.copyWith(color: textColor)),
-                  ],
+                Text(
+                  headingText,
+                  style: TextStyles.headingText.copyWith(color: textColor),
                 ),
                 Text(subHeadingText,
                     style:
