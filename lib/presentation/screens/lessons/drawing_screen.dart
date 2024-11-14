@@ -1,5 +1,6 @@
 import 'dart:typed_data';
 
+import 'package:changma_bhach/data/proverbs.dart';
 import 'package:changma_bhach/logic/character_recognition.dart';
 import 'package:changma_bhach/presentation/screens/lessons/lesson_screen.dart';
 import 'package:changma_bhach/presentation/styles/app_colors.dart';
@@ -77,6 +78,7 @@ class DrawingScreenState extends State<DrawingScreen> {
   }
 
   void _showErrorDialog(BuildContext context) {
+    final negativeProverb = Proverbs.getRandomNegativeProverb(context);
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         backgroundColor: Colors.transparent,
@@ -91,23 +93,36 @@ class DrawingScreenState extends State<DrawingScreen> {
                   borderRadius: BorderRadius.circular(4),
                 ),
                 padding: const EdgeInsets.all(16),
-                child: Row(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
                   children: [
-                    Expanded(
-                      child: Text(
-                        AppLocalizations.of(context)!.error_drawing_message,
-                        style: TextStyles.headingText
-                            .copyWith(color: Colors.white),
+                    Text(
+                      AppLocalizations.of(context)!.error_drawing_message,
+                      style: TextStyles.headingText.copyWith(color: Colors.white),
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      negativeProverb,
+                      style: TextStyles.lessonText.copyWith(
+                        color: Colors.white70,
+                        fontSize: 14,
+                        fontStyle: FontStyle.italic,
                       ),
                     ),
-                    TextButton(
-                      onPressed: () {
-                        ScaffoldMessenger.of(context).hideCurrentSnackBar();
-                      },
-                      child: const Text(
-                        'Dismiss',
-                        style: TextStyle(color: AppColors.dangerRed),
-                      ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        TextButton(
+                          onPressed: () {
+                            ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                          },
+                          child: const Text(
+                            'Dismiss',
+                            style: TextStyle(color: AppColors.dangerRed),
+                          ),
+                        ),
+                      ],
                     ),
                   ],
                 ),
@@ -124,7 +139,7 @@ class DrawingScreenState extends State<DrawingScreen> {
             ),
           ],
         ),
-        duration: const Duration(seconds: 4),
+        duration: const Duration(seconds: 6),
         behavior: SnackBarBehavior.floating,
       ),
     );
@@ -132,24 +147,22 @@ class DrawingScreenState extends State<DrawingScreen> {
 
   void _showCongratulationsDialog() {
     final lessonProvider = Provider.of<LessonProvider>(context, listen: false);
+    final positiveProverb = Proverbs.getRandomPositiveProverb(context);
 
     CongratulationsDialog.show(
       context: context,
       title: AppLocalizations.of(context)!.congratulation_message,
-      message: AppLocalizations.of(context)!.congratulation_alert_message,
+      message: "$positiveProverb\n\n${AppLocalizations.of(context)!.congratulation_alert_message}",
       imagePath: AppImages.congratulations,
-      primaryColor: AppColors.primary, // Optional: customize the primary color
+      primaryColor: AppColors.primary,
       actions: [
-        // "Restart" button
         CongratulationsAction(
-          label:
-              AppLocalizations.of(context)!.congratulation_alert_restart_button,
+          label: AppLocalizations.of(context)!.congratulation_alert_restart_button,
           onPressed: () {
             Navigator.of(context).pop();
             _clearCanvas();
           },
         ),
-        // "Next" or "Result" button depending on the last letter
         CongratulationsAction(
           label: lessonProvider.lastLetter
               ? AppLocalizations.of(context)!.congratulation_alert_result_button
