@@ -1,4 +1,6 @@
 import 'package:changma_bhach/data/content.dart';
+import 'package:changma_bhach/data/content_en.dart';
+import 'package:changma_bhach/providers/locale_provider.dart';
 import 'package:changma_bhach/providers/score_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -40,6 +42,58 @@ class LessonProvider extends ChangeNotifier {
   LessonType _currentLessonType = LessonType.vowel;
   List<Map<String, dynamic>> _selectedLesson = [];
 
+  List<Map<String, dynamic>> _getLocalizedContent(BuildContext context, LessonType type) {
+    final isEnglish = Provider.of<LocaleProvider>(context, listen: false).locale.languageCode == 'en';
+    switch (type) {
+      case LessonType.vowel:
+        return isEnglish ? ContentEn.vowel : Content.vowel;
+      case LessonType.consonant1:
+        return isEnglish ? ContentEn.consonants1 : Content.consonants1;
+      case LessonType.consonant2:
+        return isEnglish ? ContentEn.consonants2 : Content.consonants2;
+      case LessonType.consonant3:
+        return isEnglish ? ContentEn.consonants3 : Content.consonants3;
+      case LessonType.consonant4:
+        return isEnglish ? ContentEn.consonants4 : Content.consonants4;
+      case LessonType.diacritics:
+        return isEnglish ? ContentEn.diacritics : Content.diacritics;
+      case LessonType.numbers:
+        return isEnglish ? ContentEn.numbers : Content.numbers;
+      default:
+        return [];
+    }
+  }
+
+  void setlessonType(BuildContext context, LessonType type) {
+    _currentLessonType = type;
+    _currentIndex = 0;
+    _wrongAnswers = 0;
+    _correctAnswers = 0;
+    _isCorrectLetter = false;
+    _lastLetter = false;
+
+    switch (type) {
+      case LessonType.vowel:
+        _lessonHeading = "vowel";
+        break;
+      case LessonType.consonant1:
+      case LessonType.consonant2:
+      case LessonType.consonant3:
+      case LessonType.consonant4:
+        _lessonHeading = "consonant";
+        break;
+      case LessonType.diacritics:
+        _lessonHeading = "diacritics";
+        break;
+      case LessonType.numbers:
+        _lessonHeading = "numbers";
+        break;
+    }
+
+    _selectedLesson = _getLocalizedContent(context, type);
+    notifyListeners();
+  }
+
   int get currentIndex => _currentIndex;
   bool get isCorrectLetter => _isCorrectLetter;
   Map<String, dynamic> get content =>
@@ -57,52 +111,6 @@ class LessonProvider extends ChangeNotifier {
   LessonType get currentLessonType => _currentLessonType;
   String get lessonHeading => _lessonHeading;
   bool isLessonCompleted(LessonType type) => _completedLessons.contains(type);
-
-  void setlessonType(LessonType type) {
-    _currentLessonType = type;
-
-    switch (type) {
-      case LessonType.vowel:
-        _selectedLesson = Content.vowel;
-        _lessonHeading = "vowel";
-        break;
-
-      case LessonType.consonant1:
-        _selectedLesson = Content.consonants1;
-        _lessonHeading = "consonant";
-        break;
-
-      case LessonType.consonant2:
-        _selectedLesson = Content.consonants2;
-        _lessonHeading = "consonant";
-        break;
-
-      case LessonType.consonant3:
-        _selectedLesson = Content.consonants3;
-        _lessonHeading = "consonant";
-        break;
-
-      case LessonType.consonant4:
-        _selectedLesson = Content.consonants4;
-        _lessonHeading = "consonant";
-        break;
-
-      case LessonType.diacritics:
-        _selectedLesson = Content.diacritics;
-        _lessonHeading = "diacritics";
-        break;
-
-      case LessonType.numbers:
-        _selectedLesson = Content.numbers;
-        _lessonHeading = "numbers";
-        break;
-
-      default:
-        _selectedLesson = [];
-        break;
-    }
-    notifyListeners();
-  }
 
   void drawingValidation(BuildContext context, String letter) {
     if (_selectedLesson[currentIndex]["letter"] == letter) {

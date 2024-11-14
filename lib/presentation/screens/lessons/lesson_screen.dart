@@ -23,7 +23,7 @@ class _LessonScreenState extends State<LessonScreen> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       Provider.of<LessonProvider>(context, listen: false)
-          .setlessonType(widget.selectedLessonType);
+          .setlessonType(context, widget.selectedLessonType);
     });
   }
 
