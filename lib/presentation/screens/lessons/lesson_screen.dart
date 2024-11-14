@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
+import 'package:changma_bhach/presentation/widgets/exit_alert.dart';
 
 class LessonScreen extends StatefulWidget {
   final LessonType selectedLessonType;
@@ -40,7 +41,7 @@ class _LessonScreenState extends State<LessonScreen> {
         if (didPop) {
           return;
         }
-        showExitAlert(context);
+         ExitAlert.show(context);
       },
       child: Scaffold(
         backgroundColor: AppColors.backgroundColor,
@@ -49,7 +50,11 @@ class _LessonScreenState extends State<LessonScreen> {
           title: Text(
             appBarTitle == "vowel"
                 ? AppLocalizations.of(context)!.vowel
-                : AppLocalizations.of(context)!.consonant,
+                : appBarTitle == "diacritics"
+                    ? AppLocalizations.of(context)!.diacritics
+                    : appBarTitle == "numbers"
+                        ? AppLocalizations.of(context)!.numerals
+                        : AppLocalizations.of(context)!.consonant,
             style: TextStyles.lessonText.copyWith(fontSize: 26),
           ),
           centerTitle: true,
@@ -182,28 +187,4 @@ class _LessonScreenState extends State<LessonScreen> {
       ),
     );
   }
-}
-
-Future showExitAlert(BuildContext context) {
-  return showDialog<bool>(
-    context: context,
-    builder: (context) {
-      return AlertDialog(
-        title: Text(AppLocalizations.of(context)!.confirm_exit_title),
-        content: Text(AppLocalizations.of(context)!.confirm_exit_message),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.of(context).pop(false),
-            child: Text(AppLocalizations.of(context)!.cancel_button),
-          ),
-          TextButton(
-            onPressed: () {
-              Navigator.pushReplacementNamed(context, AppRoutes.bottomNav);
-            },
-            child: Text(AppLocalizations.of(context)!.yes_button),
-          ),
-        ],
-      );
-    },
-  );
 }

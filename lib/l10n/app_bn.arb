@@ -52,6 +52,19 @@
     "@numeralsChakma": {
         "description": "Label for numerals section in Chakma language"
     },
+    "selectLanguage": "ভাষা পছন্দ করুন",
+    "@selectLanguage": {
+        "description": "Label for language section"
+    },
+    "credits": "রেফারেন্স",
+    "@credits": {
+      "description": "Label for credits section"
+    },
+    "aboutUs": "আমারা",
+    "@aboutUs": {
+      "description": "Label for about us section"
+    },
+
     "bottomBarHome": "হোম",
     "@bottomBarHome": {
         "description": "Home label for bottom navigation bar"

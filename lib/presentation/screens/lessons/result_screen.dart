@@ -7,6 +7,7 @@ import 'package:provider/provider.dart';
 import 'package:changma_bhach/providers/lesson_provider.dart';
 import 'package:changma_bhach/routes/app_routes.dart';
 import 'package:percent_indicator/percent_indicator.dart';
+import 'package:changma_bhach/presentation/widgets/exit_alert.dart';
 
 class ResultScreen extends StatelessWidget {
   const ResultScreen({super.key});
@@ -22,7 +23,7 @@ class ResultScreen extends StatelessWidget {
         if (didPop) {
           return;
         }
-        showExitConfirmationDialog(context);
+        ExitAlert.show(context);
       },
       child: Scaffold(
         appBar: AppBar(
@@ -241,31 +242,4 @@ class ResultScreen extends StatelessWidget {
   }
 }
 
-Future<bool> showExitConfirmationDialog(BuildContext context) {
-  return showDialog<bool>(
-    context: context,
-    builder: (context) {
-      return AlertDialog(
-        title: const Text('Confirm Exit'),
-        content:
-            const Text('Do you really want to go back to the home screen?'),
-        actions: [
-          TextButton(
-            onPressed: () {
-              Navigator.of(context)
-                  .pop(false); // Dismisses dialog without exiting
-            },
-            child: const Text('Cancel'),
-          ),
-          TextButton(
-            onPressed: () {
-              Navigator.pushReplacementNamed(context, AppRoutes.bottomNav);
-              Provider.of<LessonProvider>(context, listen: false).resetLesson();
-            },
-            child: const Text('Yes'),
-          ),
-        ],
-      );
-    },
-  ).then((value) => value ?? false);
-}
+

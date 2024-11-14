@@ -1,5 +1,5 @@
 class ContentEN {
-  static final List<Map<String, dynamic>> vowels = [
+  static final List<Map<String, dynamic>> vowel = [
     {
       'letter': '𑄃',
       'pronunciation': 'Pichpuja - A',
@@ -259,5 +259,25 @@ class ContentEN {
       'chakmaWord': 'Meg',
       'rules': 'Pronounced as standard "Ha".'
     },
+  ];
+
+  static final List<Map<String, dynamic>> diacritics = [
+    {
+      'letter': '𑄨',
+      'pronunciation': 'Chimadat - Ra',
+      'word': 'Water',
+      'chakmaWord': 'Rang',
+      'rules': 'Pronounced as standard "Ra".'
+    }
+  ];
+
+  static final List<Map<String, dynamic>> numbers = [
+    {
+      'letter': '𑄨',
+      'pronunciation': 'Chimadat - Ra',
+      'word': 'Water',
+      'chakmaWord': 'Rang',
+      'rules': 'Pronounced as standard "Ra".'
+    }
   ];
 }

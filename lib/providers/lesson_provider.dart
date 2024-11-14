@@ -3,7 +3,7 @@ import 'package:changma_bhach/providers/score_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-enum LessonType { vowel, consonant1, consonant2, consonant3, consonant4 }
+enum LessonType { vowel, consonant1, consonant2, consonant3, consonant4, diacritics, numbers }
 
 class LessonProvider extends ChangeNotifier {
   int _wrongAnswers = 0;
@@ -38,7 +38,7 @@ class LessonProvider extends ChangeNotifier {
 
     switch (type) {
       case LessonType.vowel:
-        _selectedLesson = Content.vowels;
+        _selectedLesson = Content.vowel;
         _lessonHeading = "vowel";
         break;
 
@@ -50,18 +50,28 @@ class LessonProvider extends ChangeNotifier {
       case LessonType.consonant2:
         _selectedLesson = Content.consonants2;
         _lessonHeading = "consonant";
-
         break;
+
       case LessonType.consonant3:
         _selectedLesson = Content.consonants3;
         _lessonHeading = "consonant";
-
         break;
+
       case LessonType.consonant4:
         _selectedLesson = Content.consonants4;
         _lessonHeading = "consonant";
-
         break;
+
+      case LessonType.diacritics:
+        _selectedLesson = Content.diacritics;
+        _lessonHeading = "diacritics";
+        break;
+
+      case LessonType.numbers:
+        _selectedLesson = Content.numbers;
+        _lessonHeading = "numbers";
+        break;
+
       default:
         _selectedLesson = [];
         break;

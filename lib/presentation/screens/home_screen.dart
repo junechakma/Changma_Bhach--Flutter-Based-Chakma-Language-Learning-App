@@ -5,6 +5,7 @@ import 'package:changma_bhach/presentation/styles/text_styles.dart';
 import 'package:changma_bhach/presentation/widgets/lesson_button.dart';
 import 'package:changma_bhach/presentation/widgets/proverb_carousal.dart';
 import 'package:changma_bhach/presentation/widgets/score_counter.dart';
+import 'package:changma_bhach/presentation/widgets/settings_dialog.dart';
 import 'package:changma_bhach/providers/lesson_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -22,7 +23,12 @@ class HomeScreen extends StatelessWidget {
           automaticallyImplyLeading: false,
           backgroundColor: AppColors.backgroundColor,
           leading: IconButton(
-              onPressed: () {},
+              onPressed: () {
+                showDialog(
+                  context: context,
+                  builder: (context) => const SettingsDialog(),
+                );
+              },
               icon: const FaIcon(
                 FontAwesomeIcons.ellipsisVertical,
                 size: 30,
@@ -113,7 +119,7 @@ class HomeScreen extends StatelessWidget {
                                 MaterialPageRoute(
                                     builder: (context) => const LessonScreen(
                                           selectedLessonType:
-                                              LessonType.consonant2,
+                                              LessonType.diacritics,
                                         )));
                             Provider.of<LessonProvider>(context, listen: false)
                                 .resetLesson();
@@ -157,7 +163,7 @@ class HomeScreen extends StatelessWidget {
                                 MaterialPageRoute(
                                     builder: (context) => const LessonScreen(
                                           selectedLessonType:
-                                              LessonType.consonant3,
+                                              LessonType.numbers,
                                         )));
                             Provider.of<LessonProvider>(context, listen: false)
                                 .resetLesson();

@@ -73,6 +73,7 @@ class _TranslationScreenState extends State<TranslationScreen> {
     if (_primaryTranslation != null) {
       Clipboard.setData(ClipboardData(text: _primaryTranslation.toString()))
           .then((_) {
+        if (!mounted) return;
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text("Copied to clipboard")),
         );
@@ -81,6 +82,7 @@ class _TranslationScreenState extends State<TranslationScreen> {
   }
 
   void showSnackbar(String message) {
+    if (!mounted) return;
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(content: Text(message)),
     );
@@ -91,17 +93,18 @@ class _TranslationScreenState extends State<TranslationScreen> {
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: const Text('Chakma-Bangla Translator'),
+        centerTitle: true,
         backgroundColor: AppColors.backgroundColor,
       ),
       body: GestureDetector(
         onTap: () {
-          // Dismiss keyboard when tapping outside of text field
           FocusScope.of(context).unfocus();
         },
         child: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(20),
             child: Column(
               children: [
                 // Language Selection Row

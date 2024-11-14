@@ -39,4 +39,10 @@ class TextStyles {
     fontWeight: FontWeight.normal,
     color: AppColors.dark,
   );
+  
+  static const TextStyle buttonText = TextStyle(
+    fontSize: 18,
+    fontWeight: FontWeight.normal,
+    color: AppColors.dark,
+  );
 }
