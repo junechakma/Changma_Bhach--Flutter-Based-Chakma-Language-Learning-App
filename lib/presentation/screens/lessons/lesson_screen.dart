@@ -1,3 +1,4 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:changma_bhach/presentation/styles/app_colors.dart';
 import 'package:changma_bhach/presentation/styles/text_styles.dart';
 import 'package:changma_bhach/presentation/widgets/score_counter.dart';
@@ -18,13 +19,68 @@ class LessonScreen extends StatefulWidget {
 }
 
 class _LessonScreenState extends State<LessonScreen> {
+  final AudioPlayer _audioPlayer = AudioPlayer();
+  bool _isAudioInitialized = false;
+
   @override
   void initState() {
     super.initState();
+    _initAudio();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       Provider.of<LessonProvider>(context, listen: false)
           .setlessonType(context, widget.selectedLessonType);
     });
+  }
+
+  Future<void> _initAudio() async {
+    try {
+      await _audioPlayer
+          .setSource(AssetSource('audios/congratulations.mp3')); // Test audio
+      _isAudioInitialized = true;
+    } catch (e) {
+      print("Error initializing audio: $e");
+      _isAudioInitialized = false;
+    }
+  }
+
+  @override
+  void dispose() {
+    _audioPlayer.dispose();
+    super.dispose();
+  }
+
+  Future<void> _playAudio(String? audioPath) async {
+    if (!_isAudioInitialized) {
+      print("Audio player not initialized");
+      return;
+    }
+
+    if (audioPath == null || audioPath.isEmpty) {
+      print("Audio path is empty or null");
+      return;
+    }
+
+    try {
+      // Normalize the audio path
+      String normalizedPath = audioPath.startsWith('assets/')
+          ? audioPath.substring(7)
+          : audioPath.startsWith('/')
+              ? audioPath.substring(1)
+              : audioPath;
+
+      await _audioPlayer.stop(); // Stop any currently playing audio
+      await _audioPlayer.setSource(AssetSource(normalizedPath));
+      await _audioPlayer.resume();
+    } catch (e) {
+      print("Error playing audio: $e");
+      // You might want to show a snackbar or some UI feedback here
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Failed to play audio: ${e.toString()}'),
+          duration: const Duration(seconds: 2),
+        ),
+      );
+    }
   }
 
   @override
@@ -32,8 +88,6 @@ class _LessonScreenState extends State<LessonScreen> {
     final lessonProvider = Provider.of<LessonProvider>(context);
 
     final String appBarTitle = lessonProvider.lessonHeading;
-    // final GlobalKey<DrawingWidgetState> _drawingWidgetKey =
-    //     GlobalKey<DrawingWidgetState>();
 
     return PopScope(
       canPop: false,
@@ -41,7 +95,7 @@ class _LessonScreenState extends State<LessonScreen> {
         if (didPop) {
           return;
         }
-         ExitAlert.show(context);
+        ExitAlert.show(context);
       },
       child: Scaffold(
         backgroundColor: AppColors.backgroundColor,
@@ -84,7 +138,11 @@ class _LessonScreenState extends State<LessonScreen> {
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           IconButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                final audioPath =
+                                    lessonProvider.content['audio'] as String?;
+                                _playAudio('audios/congratulations.mp3');
+                              },
                               icon: const Icon(
                                 Icons.volume_up,
                                 size: 32,

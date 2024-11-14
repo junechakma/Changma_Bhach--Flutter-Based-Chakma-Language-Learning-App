@@ -48,6 +48,8 @@ dependencies:
   font_awesome_flutter: ^10.8.0
   confetti: ^0.8.0
   connectivity_plus: ^6.1.0
+  audioplayers: ^6.1.0
+  path_provider: ^2.1.5
     
 
 dev_dependencies:
@@ -95,6 +97,7 @@ flutter:
     - assets/images/cards/number.png
     - assets/images/cards/diacritic.png
     - assets/images/cards/bambooshoots.png
+    - assets/audios/congratulations.mp3
     - assets/models/character_recognition_model.tflite
     - assets/models/chakma_character_recognition_model.tflite
   #   - images/a_dot_ham.jpeg
