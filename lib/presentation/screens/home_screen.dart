@@ -204,7 +204,7 @@ void showConsonantDialog(BuildContext context) {
         children: [
           LessonButton(
             bgColor: AppColors.secondaryLight,
-            lessonIconText: "𑄷-𑄿",
+            // lessonIconText: "𑄷-𑄿",
             headingText: AppLocalizations.of(context)!.consonant,
             subHeadingText: AppLocalizations.of(context)!.consonantChakma,
             textColor: AppColors.secondaryDarkDark,
@@ -228,7 +228,7 @@ void showConsonantDialog(BuildContext context) {
           ),
           LessonButton(
             bgColor: AppColors.tertiaryLight,
-            lessonIconText: "𑄏-𑄖",
+            // lessonIconText: "𑄏-𑄖",
             headingText: AppLocalizations.of(context)!.consonant,
             subHeadingText: AppLocalizations.of(context)!.consonantChakma,
             textColor: AppColors.tertiaryDarkDark,
@@ -252,7 +252,7 @@ void showConsonantDialog(BuildContext context) {
           ),
           LessonButton(
             bgColor: AppColors.quaternaryLight,
-            lessonIconText: "𑄗-𑄞",
+            // lessonIconText: "𑄗-𑄞",
             headingText: AppLocalizations.of(context)!.consonant,
             subHeadingText: AppLocalizations.of(context)!.consonantChakma,
             textColor: AppColors.quaternaryDarkDark,
@@ -276,7 +276,7 @@ void showConsonantDialog(BuildContext context) {
           ),
           LessonButton(
             bgColor: AppColors.tertiaryLight,
-            lessonIconText: "𑄟-𑄦",
+            // lessonIconText: "𑄟-𑄦",
             headingText: AppLocalizations.of(context)!.consonant,
             subHeadingText: AppLocalizations.of(context)!.consonantChakma,
             textColor: AppColors.tertiaryDarkDark,

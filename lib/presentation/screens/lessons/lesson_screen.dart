@@ -92,12 +92,12 @@ class _LessonScreenState extends State<LessonScreen> {
                         ],
                       ),
                       Text(
-                        lessonProvider.content["letter"],
+                        lessonProvider.content["letter"] ?? '',
                         style:
                             TextStyles.categoryHeading.copyWith(fontSize: 120),
                       ),
                       Text(
-                        lessonProvider.content["pronunciation"],
+                        lessonProvider.content["pronunciation"] ?? '',
                         style: TextStyles.subHeadingText
                             .copyWith(fontSize: 26, color: AppColors.primary),
                       ),
@@ -116,7 +116,7 @@ class _LessonScreenState extends State<LessonScreen> {
                             " ",
                           ),
                           Text(
-                            lessonProvider.content["word"],
+                            lessonProvider.content["word"] ?? '',
                             style: TextStyles.subHeadingText.copyWith(
                                 fontSize: 18, color: AppColors.darkLight),
                           ),
@@ -126,7 +126,7 @@ class _LessonScreenState extends State<LessonScreen> {
                                 fontSize: 18, color: AppColors.darkLight),
                           ),
                           Text(
-                            lessonProvider.content["chakmaWord"],
+                            lessonProvider.content["chakmaWord"] ?? '',
                             style: TextStyles.subHeadingText.copyWith(
                                 fontSize: 18, color: AppColors.darkLight),
                           ),
@@ -140,7 +140,7 @@ class _LessonScreenState extends State<LessonScreen> {
                 height: 50,
               ),
               Text(
-                lessonProvider.content["rules"],
+                lessonProvider.content["rules"] ?? '',
                 style:
                     TextStyles.lessonText.copyWith(color: AppColors.darkLight),
               ),
