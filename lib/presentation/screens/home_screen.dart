@@ -1,3 +1,4 @@
+import 'package:changma_bhach/presentation/screens/flashcard/flashcard_screen.dart';
 import 'package:changma_bhach/presentation/screens/lessons/lesson_screen.dart';
 import 'package:changma_bhach/presentation/styles/app_colors.dart';
 import 'package:changma_bhach/presentation/styles/app_images.dart';
@@ -185,6 +186,17 @@ class HomeScreen extends StatelessWidget {
                     .copyWith(fontWeight: FontWeight.normal),
               ),
               const ProverbCarousal(),
+
+              const SizedBox(height: 20),
+              ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => FlashCardScreen()),
+                    );
+                  },
+                  child: Text("Play"))
             ],
           ),
         ),
