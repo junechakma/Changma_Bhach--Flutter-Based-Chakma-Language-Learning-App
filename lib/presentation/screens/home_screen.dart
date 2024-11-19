@@ -8,6 +8,7 @@ import 'package:changma_bhach/presentation/widgets/proverb_carousal.dart';
 import 'package:changma_bhach/presentation/widgets/score_counter.dart';
 import 'package:changma_bhach/presentation/widgets/settings_dialog.dart';
 import 'package:changma_bhach/providers/lesson_provider.dart';
+import 'package:changma_bhach/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -64,6 +65,13 @@ class HomeScreen extends StatelessWidget {
               //             .copyWith(fontSize: 32, color: AppColors.primary)),
               //   ],
               // ),
+              Text(
+                AppLocalizations.of(context)!.proverbTitle,
+                style: TextStyles.categoryHeading
+                    .copyWith(fontWeight: FontWeight.normal),
+              ),
+              const ProverbCarousal(),
+
               const SizedBox(
                 height: 40,
               ),
@@ -178,25 +186,115 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(
-                height: 60,
+                height: 40,
               ),
               Text(
                 AppLocalizations.of(context)!.proverbTitle,
                 style: TextStyles.categoryHeading
                     .copyWith(fontWeight: FontWeight.normal),
               ),
-              const ProverbCarousal(),
 
               const SizedBox(height: 20),
-              ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => FlashCardScreen()),
-                    );
-                  },
-                  child: Text("Play"))
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Expanded(
+                    child: Card(
+                      elevation: 4,
+                      child: InkWell(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => FlashCardScreen()),
+                          );
+                        },
+                        child: Container(
+                          padding: const EdgeInsets.all(16),
+                          decoration: BoxDecoration(
+                            color: AppColors.tertiaryLight,
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          child: const Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Icon(
+                                Icons.card_giftcard,
+                                size: 32,
+                                color: AppColors.tertiaryDarkDark,
+                              ),
+                              const SizedBox(height: 8),
+                              Text(
+                                "Flash Cards",
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                  color: AppColors.tertiaryDarkDark,
+                                ),
+                              ),
+                              const SizedBox(height: 4),
+                              Text(
+                                "Practice with flash cards",
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  color: AppColors.tertiaryDarkDark,
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 16),
+                  Expanded(
+                    child: Card(
+                      elevation: 4,
+                      child: InkWell(
+                        onTap: () {
+                          Navigator.pushNamed(context, AppRoutes.alphabetTable);
+                        },
+                        child: Container(
+                          padding: const EdgeInsets.all(16),
+                          decoration: BoxDecoration(
+                            color: AppColors.secondaryLight,
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          child: const Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Icon(
+                                Icons.grid_view_rounded,
+                                size: 32,
+                                color: AppColors.secondaryDarkDark,
+                              ),
+                              const SizedBox(height: 8),
+                              Text(
+                                "Alphabet Table",
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                  color: AppColors.secondaryDarkDark,
+                                ),
+                              ),
+                              const SizedBox(height: 4),
+                              Text(
+                                "View all Chakma letters",
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  color: AppColors.secondaryDarkDark,
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ],
           ),
         ),

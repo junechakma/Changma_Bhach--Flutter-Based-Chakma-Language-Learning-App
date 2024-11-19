@@ -1,4 +1,4 @@
-import 'package:changma_bhach/data/content.dart';
+import 'package:changma_bhach/data/content_bn.dart';
 import 'package:changma_bhach/data/content_en.dart';
 import 'package:changma_bhach/providers/locale_provider.dart';
 import 'package:changma_bhach/providers/score_provider.dart';
@@ -6,7 +6,15 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-enum LessonType { vowel, consonant1, consonant2, consonant3, consonant4, diacritics, numbers }
+enum LessonType {
+  vowel,
+  consonant1,
+  consonant2,
+  consonant3,
+  consonant4,
+  diacritics,
+  numbers
+}
 
 class LessonProvider extends ChangeNotifier {
   int _wrongAnswers = 0;
@@ -26,7 +34,8 @@ class LessonProvider extends ChangeNotifier {
     _prefs = await SharedPreferences.getInstance();
     final completedLessons = _prefs?.getStringList('completed_lessons') ?? [];
     _completedLessons = completedLessons
-        .map((e) => LessonType.values.firstWhere((type) => type.toString() == e))
+        .map(
+            (e) => LessonType.values.firstWhere((type) => type.toString() == e))
         .toSet();
     notifyListeners();
   }
@@ -42,23 +51,27 @@ class LessonProvider extends ChangeNotifier {
   LessonType _currentLessonType = LessonType.vowel;
   List<Map<String, dynamic>> _selectedLesson = [];
 
-  List<Map<String, dynamic>> _getLocalizedContent(BuildContext context, LessonType type) {
-    final isEnglish = Provider.of<LocaleProvider>(context, listen: false).locale.languageCode == 'en';
+  List<Map<String, dynamic>> _getLocalizedContent(
+      BuildContext context, LessonType type) {
+    final isEnglish = Provider.of<LocaleProvider>(context, listen: false)
+            .locale
+            .languageCode ==
+        'en';
     switch (type) {
       case LessonType.vowel:
-        return isEnglish ? ContentEn.vowel : Content.vowel;
+        return isEnglish ? ContentEn.vowel : ContentBn.vowel;
       case LessonType.consonant1:
-        return isEnglish ? ContentEn.consonants1 : Content.consonants1;
+        return isEnglish ? ContentEn.consonants1 : ContentBn.consonants1;
       case LessonType.consonant2:
-        return isEnglish ? ContentEn.consonants2 : Content.consonants2;
+        return isEnglish ? ContentEn.consonants2 : ContentBn.consonants2;
       case LessonType.consonant3:
-        return isEnglish ? ContentEn.consonants3 : Content.consonants3;
+        return isEnglish ? ContentEn.consonants3 : ContentBn.consonants3;
       case LessonType.consonant4:
-        return isEnglish ? ContentEn.consonants4 : Content.consonants4;
+        return isEnglish ? ContentEn.consonants4 : ContentBn.consonants4;
       case LessonType.diacritics:
-        return isEnglish ? ContentEn.diacritics : Content.diacritics;
+        return isEnglish ? ContentEn.diacritics : ContentBn.diacritics;
       case LessonType.numbers:
-        return isEnglish ? ContentEn.numbers : Content.numbers;
+        return isEnglish ? ContentEn.numbers : ContentBn.numbers;
       default:
         return [];
     }

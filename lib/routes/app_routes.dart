@@ -4,6 +4,7 @@ import 'package:changma_bhach/presentation/screens/lessons/drawing_screen.dart';
 // import 'package:changma_bhach/presentation/screens/lessons/lesson_screen.dart';
 import 'package:changma_bhach/presentation/screens/lessons/result_screen.dart';
 import 'package:changma_bhach/presentation/screens/welcome_screen.dart';
+import 'package:changma_bhach/presentation/screens/alphabet_table_screen.dart';
 import 'package:flutter/material.dart';
 
 class AppRoutes {
@@ -13,6 +14,7 @@ class AppRoutes {
   static const String lessonScreen = "/lessonScreen";
   static const String drawingScreen = "/drawingScreen";
   static const String resultScreen = "/resultScreen";
+  static const String alphabetTable = "/alphabetTable";
 
   static Map<String, WidgetBuilder> buildRoutes() {
     return {
@@ -22,6 +24,7 @@ class AppRoutes {
       // lessonScreen: (context) => const LessonScreen(),
       drawingScreen: (context) => const DrawingScreen(),
       resultScreen: (context) => const ResultScreen(),
+      alphabetTable: (context) => const AlphabetTableScreen(),
     };
   }
 }
