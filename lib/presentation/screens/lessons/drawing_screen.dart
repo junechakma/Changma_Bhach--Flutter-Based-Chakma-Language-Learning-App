@@ -99,7 +99,8 @@ class DrawingScreenState extends State<DrawingScreen> {
                   children: [
                     Text(
                       AppLocalizations.of(context)!.error_drawing_message,
-                      style: TextStyles.headingText.copyWith(color: Colors.white),
+                      style:
+                          TextStyles.headingText.copyWith(color: Colors.white),
                     ),
                     const SizedBox(height: 8),
                     Text(
@@ -148,16 +149,19 @@ class DrawingScreenState extends State<DrawingScreen> {
   void _showCongratulationsDialog() {
     final lessonProvider = Provider.of<LessonProvider>(context, listen: false);
     final positiveProverb = Proverbs.getRandomPositiveProverb(context);
-
+    print(
+        'Before Navigation: CurrentIndex: ${lessonProvider.currentIndex}, LastLetter: ${lessonProvider.lastLetter}');
     CongratulationsDialog.show(
       context: context,
       title: AppLocalizations.of(context)!.congratulation_message,
-      message: "$positiveProverb\n\n${AppLocalizations.of(context)!.congratulation_alert_message}",
+      message:
+          "$positiveProverb\n\n${AppLocalizations.of(context)!.congratulation_alert_message}",
       imagePath: AppImages.congratulations,
       primaryColor: AppColors.primary,
       actions: [
         CongratulationsAction(
-          label: AppLocalizations.of(context)!.congratulation_alert_restart_button,
+          label:
+              AppLocalizations.of(context)!.congratulation_alert_restart_button,
           onPressed: () {
             Navigator.of(context).pop();
             _clearCanvas();

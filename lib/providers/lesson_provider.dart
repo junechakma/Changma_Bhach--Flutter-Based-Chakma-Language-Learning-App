@@ -158,12 +158,12 @@ class LessonProvider extends ChangeNotifier {
   }
 
   void nextLetter() {
+    print('Current Index Before: $_currentIndex');
     if (_isCorrectLetter && _currentIndex < _selectedLesson.length - 1) {
       _currentIndex++;
       _isCorrectLetter = false;
-      if (_currentIndex < _selectedLesson.length - 1) {
-        _lastLetter = false;
-      }
+      _lastLetter = _currentIndex == _selectedLesson.length - 1;
+      print('Current Index After: $_currentIndex');
       notifyListeners();
     }
   }
